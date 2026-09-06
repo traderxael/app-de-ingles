@@ -1,0 +1,2255 @@
+{
+  "units": [
+    {
+      "id": "unit-1",
+      "title": "Unidad 1: Primeros Pasos & Saludos",
+      "description": "Aprende a presentarte, saludar y desenvolverte en tus primeras interacciones.",
+      "icon": "👋",
+      "color": "#58CC02",
+      "lessons": [
+        {
+          "id": "u1-l1",
+          "title": "Saludos y Cortesía",
+          "xp": 15,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "Buenos días, ¿cómo estás?",
+              "solution": [
+                "Good",
+                "morning",
+                "how",
+                "are",
+                "you"
+              ],
+              "options": [
+                "Good",
+                "morning",
+                "how",
+                "are",
+                "you",
+                "night",
+                "please",
+                "hello"
+              ],
+              "hint": "Morning = Mañana / Good = Bueno"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Nice to meet you",
+              "translation": "Mucho gusto en conocerte",
+              "solution": [
+                "Nice",
+                "to",
+                "meet",
+                "you"
+              ],
+              "options": [
+                "Nice",
+                "to",
+                "meet",
+                "you",
+                "see",
+                "fine",
+                "thanks"
+              ],
+              "hint": "Frase cordial para cuando conoces a alguien por primera vez."
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "¿Cómo respondes amablemente a 'Thank you very much'?",
+              "options": [
+                "You're welcome",
+                "I am fine",
+                "See you later",
+                "Good evening"
+              ],
+              "correctIndex": 0,
+              "explanation": "'You're welcome' es la forma estándar de decir 'De nada'."
+            },
+            {
+              "type": "word_pair",
+              "prompt": "Empareja los saludos básicos:",
+              "pairs": [
+                {
+                  "es": "Hola",
+                  "en": "Hello"
+                },
+                {
+                  "es": "Adiós",
+                  "en": "Goodbye"
+                },
+                {
+                  "es": "Por favor",
+                  "en": "Please"
+                },
+                {
+                  "es": "Gracias",
+                  "en": "Thank you"
+                }
+              ]
+            },
+            {
+              "type": "translate_to_en",
+              "prompt": "Yo soy de España y hablo español.",
+              "solution": [
+                "I",
+                "am",
+                "from",
+                "Spain",
+                "and",
+                "I",
+                "speak",
+                "Spanish"
+              ],
+              "options": [
+                "I",
+                "am",
+                "from",
+                "Spain",
+                "and",
+                "I",
+                "speak",
+                "Spanish",
+                "he",
+                "lives",
+                "English"
+              ],
+              "hint": "Verbo To Be: I am = Yo soy"
+            }
+          ]
+        },
+        {
+          "id": "u1-l2",
+          "title": "Presentarse y Datos Personales",
+          "xp": 20,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "¿Cuál es tu nombre?",
+              "solution": [
+                "What",
+                "is",
+                "your",
+                "name"
+              ],
+              "options": [
+                "What",
+                "is",
+                "your",
+                "name",
+                "who",
+                "where",
+                "my"
+              ],
+              "hint": "What is your name? = ¿Cuál es tu nombre?"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "I live in New York",
+              "translation": "Yo vivo en Nueva York",
+              "solution": [
+                "I",
+                "live",
+                "in",
+                "New",
+                "York"
+              ],
+              "options": [
+                "I",
+                "live",
+                "in",
+                "New",
+                "York",
+                "work",
+                "at",
+                "city"
+              ],
+              "hint": "Live = Vivir"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "Si alguien te pregunta 'Where are you from?', ¿qué contestas?",
+              "options": [
+                "I am from Argentina",
+                "I have twenty years",
+                "My name is John",
+                "Yes, I am happy"
+              ],
+              "correctIndex": 0,
+              "explanation": "'I am from...' indica tu país o ciudad de origen."
+            },
+            {
+              "type": "translate_to_en",
+              "prompt": "Tengo veinticinco años.",
+              "solution": [
+                "I",
+                "am",
+                "twenty-five",
+                "years",
+                "old"
+              ],
+              "options": [
+                "I",
+                "am",
+                "twenty-five",
+                "years",
+                "old",
+                "have",
+                "with",
+                "age"
+              ],
+              "hint": "¡Cuidado! En inglés la edad se dice con 'I am' (ser/estar), no con 'I have'."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-2",
+      "title": "Unidad 2: En el Restaurante & Comida",
+      "description": "Pide comida, bebidas, expresa tus gustos y pide la cuenta como un nativo.",
+      "icon": "🍔",
+      "color": "#FF9600",
+      "lessons": [
+        {
+          "id": "u2-l1",
+          "title": "Pedir Comida y Bebidas",
+          "xp": 20,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "Quisiera una taza de café, por favor.",
+              "solution": [
+                "I",
+                "would",
+                "like",
+                "a",
+                "cup",
+                "of",
+                "coffee",
+                "please"
+              ],
+              "options": [
+                "I",
+                "would",
+                "like",
+                "a",
+                "cup",
+                "of",
+                "coffee",
+                "please",
+                "tea",
+                "want",
+                "drink"
+              ],
+              "hint": "'I would like' (I'd like) es la forma más educada de pedir algo."
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Can I see the menu, please?",
+              "translation": "¿Puedo ver el menú, por favor?",
+              "solution": [
+                "Can",
+                "I",
+                "see",
+                "the",
+                "menu",
+                "please"
+              ],
+              "options": [
+                "Can",
+                "I",
+                "see",
+                "the",
+                "menu",
+                "please",
+                "bill",
+                "check",
+                "eat"
+              ],
+              "hint": "Can I see = ¿Puedo ver?"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "¿Cómo pides la cuenta al camarero en inglés americano?",
+              "options": [
+                "Could we have the check, please?",
+                "Give me all the money",
+                "Where is the bathroom?",
+                "I don't like food"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Check' (o 'bill' en UK) significa la cuenta del restaurante."
+            },
+            {
+              "type": "word_pair",
+              "prompt": "Empareja los alimentos esenciales:",
+              "pairs": [
+                {
+                  "es": "Agua",
+                  "en": "Water"
+                },
+                {
+                  "es": "Pan",
+                  "en": "Bread"
+                },
+                {
+                  "es": "Queso",
+                  "en": "Cheese"
+                },
+                {
+                  "es": "Pollo",
+                  "en": "Chicken"
+                }
+              ]
+            },
+            {
+              "type": "translate_to_en",
+              "prompt": "La comida está deliciosa.",
+              "solution": [
+                "The",
+                "food",
+                "is",
+                "delicious"
+              ],
+              "options": [
+                "The",
+                "food",
+                "is",
+                "delicious",
+                "bad",
+                "drinks",
+                "are",
+                "hot"
+              ],
+              "hint": "Delicious = Deliciosa / Delicioso"
+            }
+          ]
+        },
+        {
+          "id": "u2-l2",
+          "title": "Preferencias y Alergias",
+          "xp": 20,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "Soy alérgico a los cacahuetes.",
+              "solution": [
+                "I",
+                "am",
+                "allergic",
+                "to",
+                "peanuts"
+              ],
+              "options": [
+                "I",
+                "am",
+                "allergic",
+                "to",
+                "peanuts",
+                "have",
+                "with",
+                "sugar",
+                "cheese"
+              ],
+              "hint": "Allergic to = Alérgico a"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Without ice, thank you",
+              "translation": "Sin hielo, gracias",
+              "solution": [
+                "Without",
+                "ice",
+                "thank",
+                "you"
+              ],
+              "options": [
+                "Without",
+                "ice",
+                "thank",
+                "you",
+                "water",
+                "cold",
+                "more"
+              ],
+              "hint": "Without = Sin"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "¿Qué significa 'Is there a vegetarian option available?'?",
+              "options": [
+                "¿Hay alguna opción vegetariana disponible?",
+                "¿Tienen verduras podridas?",
+                "¿El plato contiene carne de cerdo?",
+                "¿Cuánto cuesta esta verdura?"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Available' significa disponible."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-3",
+      "title": "Unidad 3: Viajes, Transporte & Direcciones",
+      "description": "Muévete por el aeropuerto, metro, hoteles y pide indicaciones en la calle.",
+      "icon": "✈️",
+      "color": "#1CB0F6",
+      "lessons": [
+        {
+          "id": "u3-l1",
+          "title": "En el Aeropuerto y Hotel",
+          "xp": 25,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "¿Dónde está mi puerta de embarque?",
+              "solution": [
+                "Where",
+                "is",
+                "my",
+                "boarding",
+                "gate"
+              ],
+              "options": [
+                "Where",
+                "is",
+                "my",
+                "boarding",
+                "gate",
+                "ticket",
+                "flight",
+                "plane",
+                "here"
+              ],
+              "hint": "Boarding gate = Puerta de embarque"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Here is my passport",
+              "translation": "Aquí está mi pasaporte",
+              "solution": [
+                "Here",
+                "is",
+                "my",
+                "passport"
+              ],
+              "options": [
+                "Here",
+                "is",
+                "my",
+                "passport",
+                "bag",
+                "luggage",
+                "there"
+              ],
+              "hint": "Passport = Pasaporte"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "Alguien en la calle te dice 'Turn left at the traffic light'. ¿Qué debes hacer?",
+              "options": [
+                "Girar a la izquierda en el semáforo",
+                "Seguir recto hasta la esquina",
+                "Girar a la derecha en la señal",
+                "Detenerte de inmediato"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Turn left' es doblar a la izquierda y 'traffic light' es semáforo."
+            },
+            {
+              "type": "translate_to_en",
+              "prompt": "Tengo una reserva para dos noches.",
+              "solution": [
+                "I",
+                "have",
+                "a",
+                "reservation",
+                "for",
+                "two",
+                "nights"
+              ],
+              "options": [
+                "I",
+                "have",
+                "a",
+                "reservation",
+                "for",
+                "two",
+                "nights",
+                "book",
+                "days",
+                "room"
+              ],
+              "hint": "Reservation = Reserva"
+            }
+          ]
+        },
+        {
+          "id": "u3-l2",
+          "title": "Moverse por la Ciudad y Direcciones",
+          "xp": 25,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "¿Cómo llego a la estación de tren?",
+              "solution": [
+                "How",
+                "do",
+                "I",
+                "get",
+                "to",
+                "the",
+                "train",
+                "station"
+              ],
+              "options": [
+                "How",
+                "do",
+                "I",
+                "get",
+                "to",
+                "the",
+                "train",
+                "station",
+                "bus",
+                "stop",
+                "far"
+              ],
+              "hint": "'How do I get to...' = ¿Cómo llego a...?"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Go straight for two blocks",
+              "translation": "Ve recto por dos cuadras",
+              "solution": [
+                "Go",
+                "straight",
+                "for",
+                "two",
+                "blocks"
+              ],
+              "options": [
+                "Go",
+                "straight",
+                "for",
+                "two",
+                "blocks",
+                "right",
+                "left",
+                "streets"
+              ],
+              "hint": "Straight = Recto / derecho"
+            },
+            {
+              "type": "word_pair",
+              "prompt": "Empareja los términos de transporte:",
+              "pairs": [
+                {
+                  "es": "Boleto",
+                  "en": "Ticket"
+                },
+                {
+                  "es": "Equipaje",
+                  "en": "Luggage"
+                },
+                {
+                  "es": "Vuelo",
+                  "en": "Flight"
+                },
+                {
+                  "es": "Parada de autobús",
+                  "en": "Bus stop"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-4",
+      "title": "Unidad 4: Trabajo, Rutina & Tecnología",
+      "description": "Habla sobre tu rutina, trabajo diario, tecnología y envía mensajes profesionales.",
+      "icon": "💼",
+      "color": "#CE82FF",
+      "lessons": [
+        {
+          "id": "u4-l1",
+          "title": "Rutina Diaria y Horarios",
+          "xp": 25,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "Me despierto a las siete de la mañana.",
+              "solution": [
+                "I",
+                "wake",
+                "up",
+                "at",
+                "seven",
+                "in",
+                "the",
+                "morning"
+              ],
+              "options": [
+                "I",
+                "wake",
+                "up",
+                "at",
+                "seven",
+                "in",
+                "the",
+                "morning",
+                "sleep",
+                "night",
+                "go"
+              ],
+              "hint": "Wake up = Despertar / at seven = a las siete"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "I work from home on Fridays",
+              "translation": "Trabajo desde casa los viernes",
+              "solution": [
+                "I",
+                "work",
+                "from",
+                "home",
+                "on",
+                "Fridays"
+              ],
+              "options": [
+                "I",
+                "work",
+                "from",
+                "home",
+                "on",
+                "Fridays",
+                "office",
+                "Mondays",
+                "go"
+              ],
+              "hint": "Work from home = Trabajar desde casa"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "¿Qué significa 'The meeting has been postponed until tomorrow'?",
+              "options": [
+                "La reunión ha sido pospuesta hasta mañana",
+                "La reunión fue cancelada para siempre",
+                "Tendremos dos reuniones mañana",
+                "La reunión empieza de inmediato"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Postponed' significa aplazado o pospuesto."
+            }
+          ]
+        },
+        {
+          "id": "u4-l2",
+          "title": "Reuniones y Comunicación Profesional",
+          "xp": 25,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "Por favor envíame el informe por correo electrónico.",
+              "solution": [
+                "Please",
+                "send",
+                "me",
+                "the",
+                "report",
+                "by",
+                "email"
+              ],
+              "options": [
+                "Please",
+                "send",
+                "me",
+                "the",
+                "report",
+                "by",
+                "email",
+                "write",
+                "call",
+                "project"
+              ],
+              "hint": "Send me = Envíame / Report = Informe"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Let us schedule a quick call",
+              "translation": "Programemos una llamada rápida",
+              "solution": [
+                "Let",
+                "us",
+                "schedule",
+                "a",
+                "quick",
+                "call"
+              ],
+              "options": [
+                "Let",
+                "us",
+                "schedule",
+                "a",
+                "quick",
+                "call",
+                "make",
+                "meeting",
+                "long"
+              ],
+              "hint": "Schedule = Programar / Agendar"
+            },
+            {
+              "type": "word_pair",
+              "prompt": "Empareja los términos de oficina:",
+              "pairs": [
+                {
+                  "es": "Fecha límite",
+                  "en": "Deadline"
+                },
+                {
+                  "es": "Reunión",
+                  "en": "Meeting"
+                },
+                {
+                  "es": "Compañero",
+                  "en": "Coworker"
+                },
+                {
+                  "es": "Horario",
+                  "en": "Schedule"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-5",
+      "title": "Unidad 5: Compras, Tiendas & Ropa",
+      "description": "Pregunta precios, tallas, descuentos y paga con comodidad en cualquier tienda.",
+      "icon": "🛍️",
+      "color": "#FF4B4B",
+      "lessons": [
+        {
+          "id": "u5-l1",
+          "title": "Tallas, Precios y Ropa",
+          "xp": 25,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "¿Cuánto cuesta esta camiseta?",
+              "solution": [
+                "How",
+                "much",
+                "is",
+                "this",
+                "t-shirt"
+              ],
+              "options": [
+                "How",
+                "much",
+                "is",
+                "this",
+                "t-shirt",
+                "many",
+                "jacket",
+                "shoes",
+                "are"
+              ],
+              "hint": "How much is = ¿Cuánto cuesta?"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Do you have this in medium size?",
+              "translation": "¿Tiene esto en talla mediana?",
+              "solution": [
+                "Do",
+                "you",
+                "have",
+                "this",
+                "in",
+                "medium",
+                "size"
+              ],
+              "options": [
+                "Do",
+                "you",
+                "have",
+                "this",
+                "in",
+                "medium",
+                "size",
+                "large",
+                "color",
+                "small"
+              ],
+              "hint": "Size = Talla / Medium = Mediana"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "¿Cómo preguntas '¿Dónde están los probadores?'?",
+              "options": [
+                "Where are the fitting rooms?",
+                "Where is the emergency exit?",
+                "How much for the mirror?",
+                "Can I buy these clothes?"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Fitting rooms' o 'dressing rooms' son los probadores de ropa."
+            },
+            {
+              "type": "translate_to_en",
+              "prompt": "Solo estoy mirando, muchas gracias.",
+              "solution": [
+                "I",
+                "am",
+                "just",
+                "looking",
+                "thank",
+                "you"
+              ],
+              "options": [
+                "I",
+                "am",
+                "just",
+                "looking",
+                "thank",
+                "you",
+                "buying",
+                "want",
+                "now"
+              ],
+              "hint": "Frase clásica y muy útil: 'I am just looking'."
+            }
+          ]
+        },
+        {
+          "id": "u5-l2",
+          "title": "Pagos y Devoluciones",
+          "xp": 25,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "¿Aceptan tarjetas de crédito?",
+              "solution": [
+                "Do",
+                "you",
+                "accept",
+                "credit",
+                "cards"
+              ],
+              "options": [
+                "Do",
+                "you",
+                "accept",
+                "credit",
+                "cards",
+                "take",
+                "cash",
+                "money",
+                "pay"
+              ],
+              "hint": "Accept credit cards = Aceptar tarjetas de crédito"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "Can I get a receipt, please?",
+              "translation": "¿Me da un recibo, por favor?",
+              "solution": [
+                "Can",
+                "I",
+                "get",
+                "a",
+                "receipt",
+                "please"
+              ],
+              "options": [
+                "Can",
+                "I",
+                "get",
+                "a",
+                "receipt",
+                "please",
+                "bag",
+                "discount",
+                "bill"
+              ],
+              "hint": "Receipt (la 'p' es muda) = Recibo o comprobante de compra."
+            },
+            {
+              "type": "word_pair",
+              "prompt": "Empareja términos de compras:",
+              "pairs": [
+                {
+                  "es": "Descuento",
+                  "en": "Discount"
+                },
+                {
+                  "es": "Efectivo",
+                  "en": "Cash"
+                },
+                {
+                  "es": "Caro",
+                  "en": "Expensive"
+                },
+                {
+                  "es": "Barato",
+                  "en": "Cheap"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-6",
+      "title": "Unidad 6: Salud, Síntomas & En la Farmacia",
+      "description": "Describe malestares, pide medicinas y habla con un farmacéutico o médico.",
+      "icon": "💊",
+      "color": "#20C997",
+      "lessons": [
+        {
+          "id": "u6-l1",
+          "title": "Malestares y Síntomas Comunes",
+          "xp": 30,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "Tengo un terrible dolor de cabeza.",
+              "solution": [
+                "I",
+                "have",
+                "a",
+                "terrible",
+                "headache"
+              ],
+              "options": [
+                "I",
+                "have",
+                "a",
+                "terrible",
+                "headache",
+                "stomach",
+                "fever",
+                "cold",
+                "pain"
+              ],
+              "hint": "Headache = Dolor de cabeza"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "I do not feel very well today",
+              "translation": "No me siento muy bien hoy",
+              "solution": [
+                "I",
+                "do",
+                "not",
+                "feel",
+                "very",
+                "well",
+                "today"
+              ],
+              "options": [
+                "I",
+                "do",
+                "not",
+                "feel",
+                "very",
+                "well",
+                "today",
+                "sick",
+                "good",
+                "bad"
+              ],
+              "hint": "Feel well = Sentirse bien"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "Si el médico te dice 'Take this pill twice a day after meals', ¿qué debes hacer?",
+              "options": [
+                "Tomar esta pastilla dos veces al día después de las comidas",
+                "Tomar dos pastillas una vez por semana en ayunas",
+                "Comprar dos cajas de pastillas en la tienda",
+                "Dejar de tomar la medicina con las comidas"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Twice a day' = Dos veces al día. 'After meals' = Después de las comidas."
+            },
+            {
+              "type": "translate_to_en",
+              "prompt": "¿Necesito una receta médica para esto?",
+              "solution": [
+                "Do",
+                "I",
+                "need",
+                "a",
+                "prescription",
+                "for",
+                "this"
+              ],
+              "options": [
+                "Do",
+                "I",
+                "need",
+                "a",
+                "prescription",
+                "for",
+                "this",
+                "doctor",
+                "medicine",
+                "pill"
+              ],
+              "hint": "Prescription = Receta médica"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-7",
+      "title": "Unidad 7: Vida Social, Ocio & Amigos",
+      "description": "Habla sobre tus pasatiempos favoritos, música, planes de fin de semana e invitaciones.",
+      "icon": "🎉",
+      "color": "#E83E8C",
+      "lessons": [
+        {
+          "id": "u7-l1",
+          "title": "Planes de Fin de Semana y Pasatiempos",
+          "xp": 30,
+          "exercises": [
+            {
+              "type": "translate_to_en",
+              "prompt": "¿Qué vas a hacer este fin de semana?",
+              "solution": [
+                "What",
+                "are",
+                "you",
+                "doing",
+                "this",
+                "weekend"
+              ],
+              "options": [
+                "What",
+                "are",
+                "you",
+                "doing",
+                "this",
+                "weekend",
+                "will",
+                "go",
+                "plans",
+                "tomorrow"
+              ],
+              "hint": "Weekend = Fin de semana"
+            },
+            {
+              "type": "listen_choose",
+              "sentence": "I love listening to live music",
+              "translation": "Me encanta escuchar música en vivo",
+              "solution": [
+                "I",
+                "love",
+                "listening",
+                "to",
+                "live",
+                "music"
+              ],
+              "options": [
+                "I",
+                "love",
+                "listening",
+                "to",
+                "live",
+                "music",
+                "play",
+                "concert",
+                "songs"
+              ],
+              "hint": "Listening to = Escuchar"
+            },
+            {
+              "type": "multiple_choice",
+              "prompt": "¿Cómo invitas a un amigo diciendo '¿Quieres ir al cine conmigo hoy?'?",
+              "options": [
+                "Do you want to go to the movies with me today?",
+                "I hate going to the cinema alone",
+                "The movie starts at seven o'clock",
+                "Where did you buy the tickets?"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Do you want to go to...' es la forma amistosa y natural de invitar."
+            },
+            {
+              "type": "word_pair",
+              "prompt": "Empareja los pasatiempos:",
+              "pairs": [
+                {
+                  "es": "Cocinar",
+                  "en": "Cooking"
+                },
+                {
+                  "es": "Viajar",
+                  "en": "Traveling"
+                },
+                {
+                  "es": "Leer libros",
+                  "en": "Reading books"
+                },
+                {
+                  "es": "Hacer ejercicio",
+                  "en": "Working out"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "fc-1",
+      "word": "Welcome",
+      "translation": "Bienvenido / De nada",
+      "phonetic": "/ˈwel.kəm/",
+      "category": "Cortesía",
+      "example": "You are always welcome here."
+    },
+    {
+      "id": "fc-2",
+      "word": "Excuse me",
+      "translation": "Disculpe / Con permiso",
+      "phonetic": "/ɪkˈskjuːz miː/",
+      "category": "Cortesía",
+      "example": "Excuse me, where is the station?"
+    },
+    {
+      "id": "fc-3",
+      "word": "Nice to meet you",
+      "translation": "Mucho gusto en conocerte",
+      "phonetic": "/naɪs tuː miːt juː/",
+      "category": "Cortesía",
+      "example": "Nice to meet you, I'm Alex."
+    },
+    {
+      "id": "fc-4",
+      "word": "Delicious",
+      "translation": "Delicioso / Rica",
+      "phonetic": "/dɪˈlɪʃ.əs/",
+      "category": "Comida",
+      "example": "This pasta is delicious!"
+    },
+    {
+      "id": "fc-5",
+      "word": "Bill / Check",
+      "translation": "La cuenta (restaurante)",
+      "phonetic": "/bɪl / tʃek/",
+      "category": "Comida",
+      "example": "Could we have the bill, please?"
+    },
+    {
+      "id": "fc-6",
+      "word": "Spicy",
+      "translation": "Picante",
+      "phonetic": "/ˈspaɪ.si/",
+      "category": "Comida",
+      "example": "Is this curry very spicy?"
+    },
+    {
+      "id": "fc-7",
+      "word": "Beverage",
+      "translation": "Bebida",
+      "phonetic": "/ˈbev.ər.ɪdʒ/",
+      "category": "Comida",
+      "example": "Would you like an iced beverage?"
+    },
+    {
+      "id": "fc-8",
+      "word": "Fork and knife",
+      "translation": "Tenedor y cuchillo",
+      "phonetic": "/fɔːrk ænd naɪf/",
+      "category": "Comida",
+      "example": "Could I get a clean fork, please?"
+    },
+    {
+      "id": "fc-9",
+      "word": "Airport",
+      "translation": "Aeropuerto",
+      "phonetic": "/ˈeər.pɔːrt/",
+      "category": "Viajes",
+      "example": "We need to arrive at the airport early."
+    },
+    {
+      "id": "fc-10",
+      "word": "Luggage",
+      "translation": "Equipaje",
+      "phonetic": "/ˈlʌɡ.ɪdʒ/",
+      "category": "Viajes",
+      "example": "Do you have any checked luggage?"
+    },
+    {
+      "id": "fc-11",
+      "word": "Boarding pass",
+      "translation": "Pase de abordar",
+      "phonetic": "/ˈbɔːr.dɪŋ pæs/",
+      "category": "Viajes",
+      "example": "Please scan your boarding pass."
+    },
+    {
+      "id": "fc-12",
+      "word": "Flight attendant",
+      "translation": "Auxiliar de vuelo / Azafata",
+      "phonetic": "/flaɪt əˈten.dənt/",
+      "category": "Viajes",
+      "example": "The flight attendant helped me with my bag."
+    },
+    {
+      "id": "fc-13",
+      "word": "Delay",
+      "translation": "Retraso / Demora",
+      "phonetic": "/dɪˈleɪ/",
+      "category": "Viajes",
+      "example": "Our train has a twenty-minute delay."
+    },
+    {
+      "id": "fc-14",
+      "word": "Neighborhood",
+      "translation": "Vecindario / Barrio",
+      "phonetic": "/ˈneɪ.bər.hʊd/",
+      "category": "Viajes",
+      "example": "It is a charming and safe neighborhood."
+    },
+    {
+      "id": "fc-15",
+      "word": "Schedule",
+      "translation": "Horario / Cronograma",
+      "phonetic": "/ˈskedʒ.uːl/",
+      "category": "Trabajo",
+      "example": "Let's check tomorrow's schedule."
+    },
+    {
+      "id": "fc-16",
+      "word": "Deadline",
+      "translation": "Fecha límite de entrega",
+      "phonetic": "/ˈded.laɪn/",
+      "category": "Trabajo",
+      "example": "The project deadline is this Friday."
+    },
+    {
+      "id": "fc-17",
+      "word": "Available",
+      "translation": "Disponible",
+      "phonetic": "/əˈveɪ.lə.bəl/",
+      "category": "Trabajo",
+      "example": "Are you available for a quick sync?"
+    },
+    {
+      "id": "fc-18",
+      "word": "Appointment",
+      "translation": "Cita (médica/formal)",
+      "phonetic": "/əˈpɔɪnt.mənt/",
+      "category": "Trabajo",
+      "example": "I have an appointment at three."
+    },
+    {
+      "id": "fc-19",
+      "word": "Remote work",
+      "translation": "Trabajo remoto / Desde casa",
+      "phonetic": "/rɪˈmoʊt wɜːrk/",
+      "category": "Trabajo",
+      "example": "I enjoy the flexibility of remote work."
+    },
+    {
+      "id": "fc-20",
+      "word": "Feedback",
+      "translation": "Retroalimentación / Opinión",
+      "phonetic": "/ˈfiːd.bæk/",
+      "category": "Trabajo",
+      "example": "Thank you for the constructive feedback."
+    },
+    {
+      "id": "fc-21",
+      "word": "Discount",
+      "translation": "Descuento",
+      "phonetic": "/ˈdɪs.kaʊnt/",
+      "category": "Compras",
+      "example": "Is there a student discount available?"
+    },
+    {
+      "id": "fc-22",
+      "word": "Receipt",
+      "translation": "Recibo / Comprobante",
+      "phonetic": "/rɪˈsiːt/",
+      "category": "Compras",
+      "example": "Keep your receipt for any returns."
+    },
+    {
+      "id": "fc-23",
+      "word": "Fitting room",
+      "translation": "Probador de ropa",
+      "phonetic": "/ˈfɪt.ɪŋ ruːm/",
+      "category": "Compras",
+      "example": "The fitting rooms are on your left."
+    },
+    {
+      "id": "fc-24",
+      "word": "Expensive",
+      "translation": "Caro / Costoso",
+      "phonetic": "/ɪkˈspen.sɪv/",
+      "category": "Compras",
+      "example": "That designer watch is too expensive."
+    },
+    {
+      "id": "fc-25",
+      "word": "Bargain",
+      "translation": "Ganga / Oferta excelente",
+      "phonetic": "/ˈbɑːr.ɡɪn/",
+      "category": "Compras",
+      "example": "This jacket was a real bargain!"
+    },
+    {
+      "id": "fc-26",
+      "word": "Headache",
+      "translation": "Dolor de cabeza",
+      "phonetic": "/ˈhed.eɪk/",
+      "category": "Salud",
+      "example": "I need an aspirin for this headache."
+    },
+    {
+      "id": "fc-27",
+      "word": "Prescription",
+      "translation": "Receta médica",
+      "phonetic": "/prɪˈskrɪp.ʃən/",
+      "category": "Salud",
+      "example": "You need a prescription for antibiotics."
+    },
+    {
+      "id": "fc-28",
+      "word": "Dizzy",
+      "translation": "Mareado / Mareada",
+      "phonetic": "/ˈdɪz.i/",
+      "category": "Salud",
+      "example": "I feel a little dizzy after standing up."
+    },
+    {
+      "id": "fc-29",
+      "word": "Painkiller",
+      "translation": "Analgésico / Calma dolor",
+      "phonetic": "/ˈpeɪnˌkɪl.ər/",
+      "category": "Salud",
+      "example": "The doctor recommended a mild painkiller."
+    },
+    {
+      "id": "fc-30",
+      "word": "Allergy",
+      "translation": "Alergia",
+      "phonetic": "/ˈæl.ər.dʒi/",
+      "category": "Salud",
+      "example": "I have a pollen allergy in spring."
+    },
+    {
+      "id": "fc-31",
+      "word": "Actually",
+      "translation": "En realidad / De hecho",
+      "phonetic": "/ˈæk.tʃu.ə.li/",
+      "category": "Conectores",
+      "example": "Actually, I prefer tea over coffee."
+    },
+    {
+      "id": "fc-32",
+      "word": "Never mind",
+      "translation": "No importa / Olvídalo",
+      "phonetic": "/ˈnev.ər maɪnd/",
+      "category": "Expresiones",
+      "example": "Never mind, I solved it myself."
+    },
+    {
+      "id": "fc-33",
+      "word": "Awesome",
+      "translation": "Increíble / Genial",
+      "phonetic": "/ˈɔː.səm/",
+      "category": "Expresiones",
+      "example": "You passed the exam? That's awesome!"
+    },
+    {
+      "id": "fc-34",
+      "word": "By the way",
+      "translation": "Por cierto / A propósito",
+      "phonetic": "/baɪ ðə weɪ/",
+      "category": "Conectores",
+      "example": "By the way, what time is the show?"
+    },
+    {
+      "id": "fc-35",
+      "word": "As soon as possible",
+      "translation": "Tan pronto como sea posible (ASAP)",
+      "phonetic": "/æz suːn æz ˈpɑː.sə.bəl/",
+      "category": "Expresiones",
+      "example": "Please reply as soon as possible."
+    },
+    {
+      "id": "fc-36",
+      "word": "Borrow",
+      "translation": "Pedir prestado",
+      "phonetic": "/ˈbɑːr.oʊ/",
+      "category": "Verbos",
+      "example": "Can I borrow your phone charger?"
+    },
+    {
+      "id": "fc-37",
+      "word": "Lend",
+      "translation": "Prestar (a alguien)",
+      "phonetic": "/lend/",
+      "category": "Verbos",
+      "example": "Could you lend me five dollars?"
+    },
+    {
+      "id": "fc-38",
+      "word": "Notice",
+      "translation": "Darse cuenta / Notar",
+      "phonetic": "/ˈnoʊ.tɪs/",
+      "category": "Verbos",
+      "example": "Did you notice his new haircut?"
+    },
+    {
+      "id": "fc-39",
+      "word": "Figure out",
+      "translation": "Descubrir / Resolver",
+      "phonetic": "/ˈfɪɡ.jər aʊt/",
+      "category": "Verbos",
+      "example": "We will figure out the solution together."
+    },
+    {
+      "id": "fc-40",
+      "word": "Look forward to",
+      "translation": "Esperar con ilusión / entusiasmo",
+      "phonetic": "/lʊk ˈfɔːr.wərd tuː/",
+      "category": "Expresiones",
+      "example": "I look forward to our trip next month."
+    },
+    {
+      "id": "fc-41",
+      "word": "Crowded",
+      "translation": "Abarrotado / Lleno de gente",
+      "phonetic": "/ˈkraʊ.dɪd/",
+      "category": "Ciudad",
+      "example": "The subway was very crowded today."
+    },
+    {
+      "id": "fc-42",
+      "word": "Crosswalk",
+      "translation": "Paso de peatones",
+      "phonetic": "/ˈkrɑːs.wɑːk/",
+      "category": "Ciudad",
+      "example": "Always use the crosswalk to cross safely."
+    },
+    {
+      "id": "fc-43",
+      "word": "Downtown",
+      "translation": "Centro de la ciudad",
+      "phonetic": "/ˌdaʊnˈtaʊn/",
+      "category": "Ciudad",
+      "example": "Let's meet for dinner downtown."
+    },
+    {
+      "id": "fc-44",
+      "word": "Subway",
+      "translation": "Metro / Tren subterráneo",
+      "phonetic": "/ˈsʌb.weɪ/",
+      "category": "Ciudad",
+      "example": "Take the subway line blue to get there."
+    },
+    {
+      "id": "fc-45",
+      "word": "Sightseeing",
+      "translation": "Hacer turismo / Visitar atracciones",
+      "phonetic": "/ˈsaɪtˌsiː.ɪŋ/",
+      "category": "Viajes",
+      "example": "We spent the whole afternoon sightseeing."
+    }
+  ],
+  "speedMatchPool": [
+    {
+      "en": "Water",
+      "es": "Agua"
+    },
+    {
+      "en": "Breakfast",
+      "es": "Desayuno"
+    },
+    {
+      "en": "Lunch",
+      "es": "Almuerzo"
+    },
+    {
+      "en": "Dinner",
+      "es": "Cena"
+    },
+    {
+      "en": "Morning",
+      "es": "Mañana"
+    },
+    {
+      "en": "Night",
+      "es": "Noche"
+    },
+    {
+      "en": "Always",
+      "es": "Siempre"
+    },
+    {
+      "en": "Sometimes",
+      "es": "A veces"
+    },
+    {
+      "en": "Never",
+      "es": "Nunca"
+    },
+    {
+      "en": "Delicious",
+      "es": "Delicioso"
+    },
+    {
+      "en": "Beautiful",
+      "es": "Hermoso"
+    },
+    {
+      "en": "Expensive",
+      "es": "Caro"
+    },
+    {
+      "en": "Cheap",
+      "es": "Barato"
+    },
+    {
+      "en": "Flight",
+      "es": "Vuelo"
+    },
+    {
+      "en": "Tomorrow",
+      "es": "Mañana (día)"
+    },
+    {
+      "en": "Yesterday",
+      "es": "Ayer"
+    },
+    {
+      "en": "Together",
+      "es": "Juntos"
+    },
+    {
+      "en": "Understand",
+      "es": "Entender"
+    },
+    {
+      "en": "Help",
+      "es": "Ayuda"
+    },
+    {
+      "en": "Friend",
+      "es": "Amigo"
+    },
+    {
+      "en": "Travel",
+      "es": "Viajar"
+    },
+    {
+      "en": "Tired",
+      "es": "Cansado"
+    },
+    {
+      "en": "Hungry",
+      "es": "Hambriento"
+    },
+    {
+      "en": "Thirsty",
+      "es": "Sediento"
+    },
+    {
+      "en": "Ready",
+      "es": "Listo/a"
+    },
+    {
+      "en": "Early",
+      "es": "Temprano"
+    },
+    {
+      "en": "Late",
+      "es": "Tarde"
+    },
+    {
+      "en": "Clean",
+      "es": "Limpio"
+    },
+    {
+      "en": "Dirty",
+      "es": "Sucio"
+    },
+    {
+      "en": "Quiet",
+      "es": "Silencioso"
+    },
+    {
+      "en": "Noisy",
+      "es": "Ruidoso"
+    },
+    {
+      "en": "Window",
+      "es": "Ventana"
+    },
+    {
+      "en": "Door",
+      "es": "Puerta"
+    },
+    {
+      "en": "Ticket",
+      "es": "Boleto"
+    },
+    {
+      "en": "Passport",
+      "es": "Pasaporte"
+    },
+    {
+      "en": "Luggage",
+      "es": "Equipaje"
+    },
+    {
+      "en": "Airport",
+      "es": "Aeropuerto"
+    },
+    {
+      "en": "Station",
+      "es": "Estación"
+    },
+    {
+      "en": "Hospital",
+      "es": "Hospital"
+    },
+    {
+      "en": "Pharmacy",
+      "es": "Farmacia"
+    },
+    {
+      "en": "Doctor",
+      "es": "Médico"
+    },
+    {
+      "en": "Medicine",
+      "es": "Medicina"
+    },
+    {
+      "en": "Discount",
+      "es": "Descuento"
+    },
+    {
+      "en": "Receipt",
+      "es": "Recibo"
+    },
+    {
+      "en": "Cash",
+      "es": "Efectivo"
+    },
+    {
+      "en": "Credit card",
+      "es": "Tarjeta de crédito"
+    },
+    {
+      "en": "Meeting",
+      "es": "Reunión"
+    },
+    {
+      "en": "Deadline",
+      "es": "Fecha límite"
+    },
+    {
+      "en": "Schedule",
+      "es": "Horario"
+    },
+    {
+      "en": "Manager",
+      "es": "Gerente"
+    },
+    {
+      "en": "Weekend",
+      "es": "Fin de semana"
+    },
+    {
+      "en": "Party",
+      "es": "Fiesta"
+    },
+    {
+      "en": "Movie",
+      "es": "Película"
+    },
+    {
+      "en": "Street",
+      "es": "Calle"
+    },
+    {
+      "en": "City",
+      "es": "Ciudad"
+    },
+    {
+      "en": "Country",
+      "es": "País"
+    },
+    {
+      "en": "Family",
+      "es": "Familia"
+    },
+    {
+      "en": "Happy",
+      "es": "Feliz"
+    },
+    {
+      "en": "Sad",
+      "es": "Triste"
+    },
+    {
+      "en": "Strong",
+      "es": "Fuerte"
+    },
+    {
+      "en": "Weak",
+      "es": "Débil"
+    },
+    {
+      "en": "Fast",
+      "es": "Rápido"
+    },
+    {
+      "en": "Slow",
+      "es": "Lento"
+    }
+  ],
+  "roleplays": [
+    {
+      "id": "rp-cafe",
+      "title": "☕ En la Cafetería de Londres",
+      "difficulty": "Básico",
+      "scenario": "Estás pidiendo un café y un bocadillo en una cafetería en Covent Garden, Londres.",
+      "botAvatar": "👩‍🍳",
+      "botName": "Barista Sarah",
+      "steps": [
+        {
+          "speaker": "bot",
+          "text": "Hi there! Welcome to The Daily Roast. What can I get started for you today?",
+          "translation": "¡Hola! Bienvenido a The Daily Roast. ¿Qué te puedo preparar hoy?",
+          "options": [
+            {
+              "text": "Hello! I'd like a medium iced latte with oat milk, please.",
+              "translation": "¡Hola! Quisiera un latte helado mediano con leche de avena, por favor.",
+              "score": 10,
+              "next": 1
+            },
+            {
+              "text": "I want coffee now quickly.",
+              "translation": "Quiero café ahora rápido.",
+              "score": 2,
+              "warning": "Un poco descortés. En inglés es preferible usar 'I'd like' o 'Could I have'.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "Great choice! Would you like anything to eat with that, like a warm blueberry muffin?",
+          "translation": "¡Gran elección! ¿Te gustaría algo de comer con eso, como un muffin tibio de arándanos?",
+          "options": [
+            {
+              "text": "Yes, please! That sounds delicious. How much is it?",
+              "translation": "¡Sí, por favor! Suena delicioso. ¿Cuánto cuesta?",
+              "score": 10,
+              "next": 2
+            },
+            {
+              "text": "No, just the drink is fine for me today, thanks!",
+              "translation": "No, solo la bebida está bien por hoy, ¡gracias!",
+              "score": 10,
+              "next": 2
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "Perfect! For here or to go? And will that be cash or card?",
+          "translation": "¡Perfecto! ¿Para tomar aquí o para llevar? ¿Y pagarás en efectivo o tarjeta?",
+          "options": [
+            {
+              "text": "To go, and I'll pay by card, please.",
+              "translation": "Para llevar, y pagaré con tarjeta, por favor.",
+              "score": 10,
+              "next": "finish"
+            },
+            {
+              "text": "For here, please. Here is my credit card.",
+              "translation": "Para tomar aquí, por favor. Aquí tiene mi tarjeta de crédito.",
+              "score": 10,
+              "next": "finish"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rp-airport",
+      "title": "✈️ En el Control de Aduanas (JFK)",
+      "difficulty": "Intermedio",
+      "scenario": "Acabas de aterrizar en Nueva York y te entrevista el oficial de migración.",
+      "botAvatar": "👮‍♂️",
+      "botName": "Officer Miller",
+      "steps": [
+        {
+          "speaker": "bot",
+          "text": "Good afternoon. Passport and customs declaration form, please.",
+          "translation": "Buenas tardes. Pasaporte y formulario de aduanas, por favor.",
+          "options": [
+            {
+              "text": "Good afternoon, officer. Here you go.",
+              "translation": "Buenas tardes, oficial. Aquí tiene.",
+              "score": 10,
+              "next": 1
+            },
+            {
+              "text": "Yes, take it.",
+              "translation": "Sí, tómelo.",
+              "score": 4,
+              "warning": "'Here you go' es la expresión natural al entregar algo formalmente.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "What is the purpose of your visit to the United States?",
+          "translation": "¿Cuál es el propósito de su visita a los Estados Unidos?",
+          "options": [
+            {
+              "text": "I am here on vacation for ten days with my family.",
+              "translation": "Estoy aquí de vacaciones por diez días con mi familia.",
+              "score": 10,
+              "next": 2
+            },
+            {
+              "text": "I'm attending a tech conference and will do some sightseeing.",
+              "translation": "Asistiré a una conferencia tecnológica y haré algo de turismo.",
+              "score": 10,
+              "next": 2
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "Where will you be staying during your time here?",
+          "translation": "¿Dónde se estará hospedando durante su estancia aquí?",
+          "options": [
+            {
+              "text": "I booked a room at the Manhattan Central Hotel.",
+              "translation": "Reservé una habitación en el Manhattan Central Hotel.",
+              "score": 10,
+              "next": "finish"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rp-shopping",
+      "title": "🛍️ De Compras en Manhattan",
+      "difficulty": "Básico",
+      "scenario": "Estás buscando una chaqueta en una tienda de ropa en la 5ta Avenida de Nueva York.",
+      "botAvatar": "💁‍♀️",
+      "botName": "Store Associate Emma",
+      "steps": [
+        {
+          "speaker": "bot",
+          "text": "Hello! Welcome to Urban Style. Let me know if you need any help finding sizes!",
+          "translation": "¡Hola! Bienvenido a Urban Style. ¡Avísame si necesitas ayuda para encontrar tallas!",
+          "options": [
+            {
+              "text": "Hi! Excuse me, do you have this blue jacket in a size medium?",
+              "translation": "¡Hola! Disculpe, ¿tienen esta chaqueta azul en talla mediana?",
+              "score": 10,
+              "next": 1
+            },
+            {
+              "text": "Where is the cheapest clothes here?",
+              "translation": "¿Dónde está la ropa más barata aquí?",
+              "score": 5,
+              "next": 1
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "Let me check the stock for you... Yes, here is one! Would you like to try it on in our fitting room?",
+          "translation": "Déjame revisar el inventario... ¡Sí, aquí hay una! ¿Te gustaría probártela en nuestro probador?",
+          "options": [
+            {
+              "text": "Yes, please! Where are the fitting rooms located?",
+              "translation": "¡Sí, por favor! ¿Dónde se encuentran los probadores?",
+              "score": 10,
+              "next": 2
+            },
+            {
+              "text": "No, I'm sure it fits. How much does it cost with taxes?",
+              "translation": "No, seguro me queda bien. ¿Cuánto cuesta con impuestos incluidos?",
+              "score": 10,
+              "next": 2
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "It fits you wonderfully! And today all jackets have an extra 20% discount at the checkout.",
+          "translation": "¡Te queda estupenda! Y hoy todas las chaquetas tienen un 20% de descuento adicional en caja.",
+          "options": [
+            {
+              "text": "That sounds amazing! I will definitely take it. Can I pay by card?",
+              "translation": "¡Suena increíble! Definitivamente me la llevo. ¿Puedo pagar con tarjeta?",
+              "score": 10,
+              "next": "finish"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rp-hotel",
+      "title": "🏨 Check-in en el Hotel de Miami",
+      "difficulty": "Intermedio",
+      "scenario": "Llegas a la recepción de tu hotel en South Beach para hacer el check-in tras un largo viaje.",
+      "botAvatar": "🛎️",
+      "botName": "Front Desk David",
+      "steps": [
+        {
+          "speaker": "bot",
+          "text": "Good evening! Welcome to the Oceanfront Resort. How can I assist you tonight?",
+          "translation": "¡Buenas noches! Bienvenido al Oceanfront Resort. ¿Cómo puedo ayudarle esta noche?",
+          "options": [
+            {
+              "text": "Good evening! I have a reservation under the name Carlos Rodriguez.",
+              "translation": "¡Buenas noches! Tengo una reserva a nombre de Carlos Rodríguez.",
+              "score": 10,
+              "next": 1
+            },
+            {
+              "text": "Give me the key to my room right now.",
+              "translation": "Dame la llave de mi habitación ahora mismo.",
+              "score": 2,
+              "warning": "En hotelería se utiliza siempre 'I have a reservation under the name...'.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "Found your booking! A deluxe room with ocean view for three nights. Could you show me an ID and a credit card for the deposit?",
+          "translation": "¡Encontré su reserva! Una habitación deluxe con vista al mar por tres noches. ¿Podría mostrarme una identificación y una tarjeta para el depósito?",
+          "options": [
+            {
+              "text": "Sure! Here is my passport and my credit card.",
+              "translation": "¡Seguro! Aquí tiene mi pasaporte y mi tarjeta de crédito.",
+              "score": 10,
+              "next": 2
+            }
+          ]
+        },
+        {
+          "speaker": "bot",
+          "text": "Thank you! Here are your key cards for room 402. Breakfast is served from 7 to 10 AM on the terrace. Is there anything else you need?",
+          "translation": "¡Gracias! Aquí tiene sus llaves para la habitación 402. El desayuno se sirve de 7 a 10 AM en la terraza. ¿Hay algo más que necesite?",
+          "options": [
+            {
+              "text": "That's wonderful! What is the Wi-Fi password, please?",
+              "translation": "¡Maravilloso! ¿Cuál es la contraseña de Wi-Fi, por favor?",
+              "score": 10,
+              "next": "finish"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sentenceScramblePool": [
+    {
+      "id": "sc-1",
+      "prompt": "Ella siempre llega temprano a la oficina.",
+      "solution": [
+        "She",
+        "always",
+        "arrives",
+        "early",
+        "at",
+        "the",
+        "office"
+      ],
+      "hint": "Adverbios de frecuencia van antes del verbo principal: 'She always arrives'."
+    },
+    {
+      "id": "sc-2",
+      "prompt": "¿A qué hora sale tu vuelo mañana?",
+      "solution": [
+        "What",
+        "time",
+        "does",
+        "your",
+        "flight",
+        "leave",
+        "tomorrow"
+      ],
+      "hint": "Estructura interrogativa con auxiliar: 'What time does your flight leave...'"
+    },
+    {
+      "id": "sc-3",
+      "prompt": "Nosotros disfrutamos mucho la comida en este restaurante.",
+      "solution": [
+        "We",
+        "really",
+        "enjoyed",
+        "the",
+        "food",
+        "at",
+        "this",
+        "restaurant"
+      ],
+      "hint": "Enjoyed = Pasado de enjoy / really = de verdad, mucho"
+    },
+    {
+      "id": "sc-4",
+      "prompt": "No puedo encontrar mis llaves ni mi teléfono.",
+      "solution": [
+        "I",
+        "cannot",
+        "find",
+        "my",
+        "keys",
+        "or",
+        "my",
+        "phone"
+      ],
+      "hint": "Cannot find = No puedo encontrar"
+    },
+    {
+      "id": "sc-5",
+      "prompt": "¿Podrías hablar un poco más despacio, por favor?",
+      "solution": [
+        "Could",
+        "you",
+        "speak",
+        "a",
+        "little",
+        "slower",
+        "please"
+      ],
+      "hint": "'Could you speak...' es la fórmula cortés para pedir que hablen despacio."
+    },
+    {
+      "id": "sc-6",
+      "prompt": "Estoy buscando un hotel cómodo cerca del centro.",
+      "solution": [
+        "I",
+        "am",
+        "looking",
+        "for",
+        "a",
+        "comfortable",
+        "hotel",
+        "downtown"
+      ],
+      "hint": "Looking for = Buscando / Downtown = En el centro"
+    },
+    {
+      "id": "sc-7",
+      "prompt": "¿Cuánto tiempo dura el viaje en tren?",
+      "solution": [
+        "How",
+        "long",
+        "does",
+        "the",
+        "train",
+        "trip",
+        "take"
+      ],
+      "hint": "'How long does it take?' = ¿Cuánto tiempo toma?"
+    },
+    {
+      "id": "sc-8",
+      "prompt": "Mi hermano trabaja como diseñador gráfico en Londres.",
+      "solution": [
+        "My",
+        "brother",
+        "works",
+        "as",
+        "a",
+        "graphic",
+        "designer",
+        "in",
+        "London"
+      ],
+      "hint": "Profesiones llevan artículo indefinido en inglés: 'as a graphic designer'."
+    },
+    {
+      "id": "sc-9",
+      "prompt": "Ellos van a viajar a Nueva York el próximo mes.",
+      "solution": [
+        "They",
+        "are",
+        "going",
+        "to",
+        "travel",
+        "to",
+        "New",
+        "York",
+        "next",
+        "month"
+      ],
+      "hint": "Futuro con Be Going To: 'They are going to travel'."
+    },
+    {
+      "id": "sc-10",
+      "prompt": "¿Hay una farmacia abierta cerca de aquí?",
+      "solution": [
+        "Is",
+        "there",
+        "an",
+        "open",
+        "pharmacy",
+        "near",
+        "here"
+      ],
+      "hint": "Is there = ¿Hay? (singular)"
+    }
+  ],
+  "audioDetectivePool": [
+    {
+      "id": "ad-1",
+      "fullSentence": "Look at that beautiful sheep in the green field.",
+      "blankSentence": "Look at that beautiful _____ in the green field.",
+      "audioPhrase": "sheep in the green field",
+      "targetWord": "sheep",
+      "options": [
+        "sheep",
+        "ship",
+        "sheet",
+        "cheap"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "Vocal larga /iː/ (sheep: oveja) frente a vocal corta /ɪ/ (ship: barco)."
+    },
+    {
+      "id": "ad-2",
+      "fullSentence": "There are three big trees outside the window.",
+      "blankSentence": "There are _____ big trees outside the window.",
+      "audioPhrase": "three big trees",
+      "targetWord": "three",
+      "options": [
+        "three",
+        "tree",
+        "free",
+        "tea"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "Sonido interdental /θ/ (three: tres) frente a la consonante /t/ (tree: árbol)."
+    },
+    {
+      "id": "ad-3",
+      "fullSentence": "Could you lend me a pen to sign this document?",
+      "blankSentence": "Could you lend me a _____ to sign this document?",
+      "audioPhrase": "lend me a pen to sign",
+      "targetWord": "pen",
+      "options": [
+        "pen",
+        "pan",
+        "pin",
+        "pain"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "Vocal media /e/ (pen: bolígrafo) frente a /æ/ abierta (pan: sartén)."
+    },
+    {
+      "id": "ad-4",
+      "fullSentence": "Where do you live in this big city?",
+      "blankSentence": "Where do you _____ in this big city?",
+      "audioPhrase": "Where do you live",
+      "targetWord": "live",
+      "options": [
+        "live",
+        "leave",
+        "life",
+        "lift"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "Vocal corta /ɪ/ (live: vivir) frente a vocal larga /iː/ (leave: salir o partir)."
+    },
+    {
+      "id": "ad-5",
+      "fullSentence": "I cannot walk fast with these shoes.",
+      "blankSentence": "I cannot walk _____ with these shoes.",
+      "audioPhrase": "walk fast with these shoes",
+      "targetWord": "fast",
+      "options": [
+        "fast",
+        "first",
+        "past",
+        "last"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "Sonido /f/ inicial y vocal /æ/ o /ɑː/ (fast: rápido) frente a /ɜː/ (first: primero)."
+    },
+    {
+      "id": "ad-6",
+      "fullSentence": "Please take a seat and wait for the doctor.",
+      "blankSentence": "Please take a _____ and wait for the doctor.",
+      "audioPhrase": "take a seat and wait",
+      "targetWord": "seat",
+      "options": [
+        "seat",
+        "sit",
+        "seed",
+        "sheet"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "'Seat' (asiento) con /iː/ larga y consonante /t/ sorda final."
+    },
+    {
+      "id": "ad-7",
+      "fullSentence": "He bought a dark blue jacket for the winter.",
+      "blankSentence": "He bought a _____ blue jacket for the winter.",
+      "audioPhrase": "a dark blue jacket",
+      "targetWord": "dark",
+      "options": [
+        "dark",
+        "duck",
+        "dock",
+        "bark"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "Sonido /ɑː/ posterior largo (dark: oscuro) frente a /ʌ/ breve (duck: pato)."
+    },
+    {
+      "id": "ad-8",
+      "fullSentence": "We had to wait in the rain for twenty minutes.",
+      "blankSentence": "We had to _____ in the rain for twenty minutes.",
+      "audioPhrase": "had to wait in the rain",
+      "targetWord": "wait",
+      "options": [
+        "wait",
+        "wet",
+        "weight",
+        "white"
+      ],
+      "correctIndex": 0,
+      "phoneticHint": "Diptongo /eɪ/ (wait: esperar) frente a vocal simple /e/ (wet: mojado)."
+    }
+  ]
+}
