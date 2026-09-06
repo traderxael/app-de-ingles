@@ -1,0 +1,6 @@
+{
+  "name": "LingoQuest Pro",
+  "description": "Aprende inglés jugando: 7 unidades completas, 6 minijuegos arcade, liga semanal y repetición espaciada SRS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

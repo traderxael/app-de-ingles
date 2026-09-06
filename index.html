@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LingoQuest Pro - Aprende Inglés Jugando</title>
+  <meta name="description" content="Aprende inglés de español a inglés con la mejor app móvil interactiva: 7 unidades completas, 6 minijuegos arcade, liga semanal, repetición espaciada SRS y práctica oral nativa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+  <!-- Contenedor general con opción de marco móvil simulado en escritorio -->
+  <div class="app-layout">
+    
+    <!-- Barra superior de utilidades en escritorio (Alternador de marco móvil y ayuda) -->
+    <header class="desktop-utility-bar" role="banner">
+      <div class="utility-left">
+        <span class="app-logo">🌟 LingoQuest English Pro</span>
+        <span class="app-tagline">De Español a Inglés • 7 Unidades • 6 Minijuegos • Liga Semanal</span>
+      </div>
+      <div class="utility-right">
+        <button id="btn-toggle-frame" class="utility-btn" title="Alternar marco de teléfono móvil" aria-label="Alternar vista móvil o pantalla completa">
+          📱 Modo Móvil / Completo
+        </button>
+      </div>
+    </header>
+
+    <!-- Marco Móvil / Dispositivo Móvil -->
+    <main class="mobile-device-wrapper" id="device-wrapper" role="main">
+      <div class="mobile-screen" id="mobile-screen">
+        
+        <!-- Barra de Estado Superior (HUD) -->
+        <header class="app-hud" aria-label="Barra de estado del jugador">
+          <div class="hud-item hud-streak" id="hud-streak-btn" title="Tu racha diaria de días consecutivos" tabindex="0" role="button">
+            <span class="hud-icon flame-anim">🔥</span>
+            <span class="hud-value" id="hud-streak-val">1</span>
+          </div>
+
+          <div class="hud-item hud-gems" id="hud-gems-btn" title="Gemas acumuladas" tabindex="0" role="button">
+            <span class="hud-icon">💎</span>
+            <span class="hud-value" id="hud-gems-val">120</span>
+          </div>
+
+          <div class="hud-item hud-hearts" id="hud-hearts-btn" title="Tus vidas actuales" tabindex="0" role="button">
+            <span class="hud-icon heart-anim">❤️</span>
+            <span class="hud-value" id="hud-hearts-val">5/5</span>
+          </div>
+
+          <div class="hud-actions">
+            <button id="btn-sound-toggle" class="hud-mini-btn" title="Activar/Desactivar Sonidos" aria-label="Alternar sonido">🔊</button>
+            <button id="btn-theme-toggle" class="hud-mini-btn" title="Modo Oscuro / Claro" aria-label="Alternar tema oscuro o claro">🌙</button>
+          </div>
+        </header>
+
+        <!-- VISTAS DE LA APLICACIÓN -->
+        <div class="views-container">
+          
+          <!-- VISTA 1: RUTA DE APRENDIZAJE (LEARN PATH) -->
+          <section id="view-learn" class="app-view active-view" aria-labelledby="nav-btn-learn">
+            <div class="view-scroll-content">
+              <!-- Banner de bienvenida / objetivo diario -->
+              <div class="daily-goal-card" id="daily-goal-card">
+                <div class="goal-text">
+                  <h3 id="daily-goal-title">¡Tu meta de hoy! 🎯</h3>
+                  <p id="daily-goal-desc">Completa 1 lección para mantener tu racha activa.</p>
+                </div>
+                <div class="goal-progress-badge" id="daily-goal-badge">
+                  <span class="xp-val">+15 XP</span>
+                </div>
+              </div>
+
+              <!-- Camino de aprendizaje interactivo -->
+              <div class="learning-path" id="learning-path-container">
+                <!-- Se inyecta dinámicamente con las 7 unidades y niveles -->
+              </div>
+            </div>
+          </section>
+
+          <!-- VISTA 2: CENTRO DE JUEGOS ARCADE (GAMES) -->
+          <section id="view-games" class="app-view" aria-labelledby="nav-btn-games">
+            <div class="view-scroll-content">
+              <div class="arcade-hero">
+                <h2>Arcade de Aprendizaje ⚡</h2>
+                <p>6 dinámicas gamificadas para dominar vocabulario, oído, reflejos y sintaxis</p>
+              </div>
+
+              <div class="games-grid">
+                
+                <!-- Tarjeta Juego 1: Speed Match -->
+                <div class="game-arcade-card card-orange" id="card-play-speedmatch">
+                  <div class="game-arcade-badge">🔥 Más Popular</div>
+                  <div class="game-arcade-icon">⏱️</div>
+                  <div class="game-arcade-info">
+                    <h3>Speed Match Contrarreloj</h3>
+                    <p>Empareja parejas de palabras en inglés y español contra el reloj con combos continuos.</p>
+                    <span class="game-xp-tag">⚡ Hasta +50 XP</span>
+                  </div>
+                  <button class="primary-btn arcade-play-btn">¡JUGAR YA!</button>
+                </div>
+
+                <!-- Tarjeta Juego 2: Word Fall (Lluvia de Palabras) -->
+                <div class="game-arcade-card card-emerald" id="card-play-wordfall">
+                  <div class="game-arcade-badge">🌧️ Reflejos Rápidos</div>
+                  <div class="game-arcade-icon">🎈</div>
+                  <div class="game-arcade-info">
+                    <h3>Word Fall: Lluvia de Palabras</h3>
+                    <p>Atrapa las burbujas flotantes con la traducción correcta antes de que toquen el suelo.</p>
+                    <span class="game-xp-tag">⚡ +45 XP</span>
+                  </div>
+                  <button class="primary-btn arcade-play-btn">ATRAPAR BURBUJAS</button>
+                </div>
+
+                <!-- Tarjeta Juego 3: Sentence Scramble (Desafío Sintáctico) -->
+                <div class="game-arcade-card card-yellow" id="card-play-scramble">
+                  <div class="game-arcade-badge">🧩 Gramática Viva</div>
+                  <div class="game-arcade-icon">🧩</div>
+                  <div class="game-arcade-info">
+                    <h3>Sentence Scramble</h3>
+                    <p>Ordena las fichas de oraciones en inglés contra el reloj y escucha su entonación nativa.</p>
+                    <span class="game-xp-tag">⚡ +40 XP</span>
+                  </div>
+                  <button class="primary-btn arcade-play-btn">ORDENAR FRASES</button>
+                </div>
+
+                <!-- Tarjeta Juego 4: Audio Detective (Discriminación Auditiva) -->
+                <div class="game-arcade-card card-red" id="card-play-audiodetective">
+                  <div class="game-arcade-badge">🎧 Agudeza Auditiva</div>
+                  <div class="game-arcade-icon">🕵️‍♂️</div>
+                  <div class="game-arcade-info">
+                    <h3>Audio Detective</h3>
+                    <p>Distingue palabras de pronunciación similar (sheep/ship, tree/three) en audios misteriosos.</p>
+                    <span class="game-xp-tag">⚡ +35 XP</span>
+                  </div>
+                  <button class="primary-btn arcade-play-btn">INVESTIGAR</button>
+                </div>
+
+                <!-- Tarjeta Juego 5: Roleplay Conversacional -->
+                <div class="game-arcade-card card-purple" id="card-play-roleplay">
+                  <div class="game-arcade-badge">💬 Inmersión Total</div>
+                  <div class="game-arcade-icon">🎭</div>
+                  <div class="game-arcade-info">
+                    <h3>Simulador de Conversación</h3>
+                    <p>Habla en escenarios de la vida real (cafetería, aduanas, compras y hoteles).</p>
+                    <span class="game-xp-tag">⚡ +35 XP</span>
+                  </div>
+                  <button class="primary-btn arcade-play-btn">PRACTICAR</button>
+                </div>
+
+                <!-- Tarjeta Juego 6: Flashcards 3D -->
+                <div class="game-arcade-card card-blue" id="card-play-flashcards">
+                  <div class="game-arcade-badge">🧠 Retención SRS</div>
+                  <div class="game-arcade-icon">🃏</div>
+                  <div class="game-arcade-info">
+                    <h3>Tarjetas Inteligentes 3D</h3>
+                    <p>Memoriza más de 45 palabras clave con repetición espaciada y pronunciación nativa.</p>
+                    <span class="game-xp-tag">⚡ +30 XP</span>
+                  </div>
+                  <button class="primary-btn arcade-play-btn">REPASAR</button>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- VISTA 3: LIGA SEMANAL (LEADERBOARD) -->
+          <section id="view-leaderboard" class="app-view" aria-labelledby="nav-btn-leaderboard">
+            <div class="view-scroll-content">
+              <div class="league-hero-card">
+                <div class="league-badge-banner">💎 LIGA ZAFIRO</div>
+                <h2>Clasificación Semanal</h2>
+                <p>Compite con otros estudiantes. Los 3 primeros ascienden con recompensas de gemas.</p>
+                <div class="league-timer-chip">⏱️ Finaliza en: <strong>3 días</strong></div>
+              </div>
+
+              <!-- Podio Top 3 -->
+              <div class="league-podium-container" id="league-podium">
+                <!-- Se inyecta por JS -->
+              </div>
+
+              <!-- Tabla de posiciones completa -->
+              <div class="leaderboard-table-container">
+                <div class="leaderboard-list" id="leaderboard-players-list">
+                  <!-- Se inyecta dinámicamente con los jugadores -->
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- VISTA 4: REPASO SRS (REVIEW) -->
+          <section id="view-review" class="app-view" aria-labelledby="nav-btn-review">
+            <div class="view-scroll-content">
+              <div class="review-dashboard-header">
+                <h2>Centro de Repaso Inteligente 🃏</h2>
+                <p>La neurociencia demuestra que repasar en intervalos espaciados multiplica la retención a largo plazo.</p>
+              </div>
+
+              <div class="srs-stats-card">
+                <div class="srs-stat-item">
+                  <span class="srs-num" id="srs-learned-count">0</span>
+                  <span class="srs-desc">Palabras fijadas</span>
+                </div>
+                <div class="srs-stat-item">
+                  <span class="srs-num" id="srs-review-count">0</span>
+                  <span class="srs-desc">Por repasar</span>
+                </div>
+                <div class="srs-stat-item">
+                  <span class="srs-num" id="srs-accuracy">100%</span>
+                  <span class="srs-desc">Precisión</span>
+                </div>
+              </div>
+
+              <div class="srs-actions-banner">
+                <h3>¿Listo para tu sesión diaria de repaso?</h3>
+                <p>Solo te tomará 2 minutos consolidar tu vocabulario en la memoria.</p>
+                <button class="primary-btn success-btn full-width" id="btn-start-srs-session">
+                  INICIAR SESIÓN DE FLASHCARDS 🚀
+                </button>
+              </div>
+
+              <div class="vocabulary-preview-section">
+                <div class="vocab-header-row">
+                  <h3>Glosario de Vocabulario</h3>
+                  <span class="vocab-count-badge" id="vocab-total-badge">45 palabras</span>
+                </div>
+
+                <!-- Filtros por categoría de vocabulario -->
+                <div class="vocab-filter-row" id="vocab-filter-row">
+                  <button class="vocab-filter-pill active" data-category="all">Todas</button>
+                  <button class="vocab-filter-pill" data-category="Cortesía">Cortesía</button>
+                  <button class="vocab-filter-pill" data-category="Comida">Comida</button>
+                  <button class="vocab-filter-pill" data-category="Viajes">Viajes</button>
+                  <button class="vocab-filter-pill" data-category="Trabajo">Trabajo</button>
+                  <button class="vocab-filter-pill" data-category="Compras">Compras</button>
+                  <button class="vocab-filter-pill" data-category="Salud">Salud</button>
+                  <button class="vocab-filter-pill" data-category="Expresiones">Expresiones</button>
+                </div>
+
+                <div class="vocab-chips-preview" id="vocab-preview-list">
+                  <!-- Inyectado dinámicamente por JS -->
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- VISTA 5: PERFIL, AVATARES & TIENDA (PROFILE) -->
+          <section id="view-profile" class="app-view" aria-labelledby="nav-btn-profile">
+            <div class="view-scroll-content">
+              
+              <!-- Tarjeta de Usuario -->
+              <div class="profile-hero-card">
+                <div class="avatar-wrapper">
+                  <span class="user-avatar" id="profile-user-avatar">🦁</span>
+                  <span class="level-tag" id="profile-level-tag">Nivel A1 Inicial</span>
+                </div>
+                <h2 class="user-name">Estudiante LingoQuest</h2>
+                <p class="user-status">En camino a la fluidez en inglés con método científico 🚀</p>
+                
+                <div class="profile-stats-grid">
+                  <div class="p-stat">
+                    <span class="p-icon">⚡</span>
+                    <strong id="profile-xp">45</strong>
+                    <span>Total XP</span>
+                  </div>
+                  <div class="p-stat">
+                    <span class="p-icon">🔥</span>
+                    <strong id="profile-streak">1</strong>
+                    <span>Días Racha</span>
+                  </div>
+                  <div class="p-stat">
+                    <span class="p-icon">💎</span>
+                    <strong id="profile-gems">120</strong>
+                    <span>Gemas</span>
+                  </div>
+                  <div class="p-stat">
+                    <span class="p-icon">📚</span>
+                    <strong id="profile-words">24</strong>
+                    <span>Palabras</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Selector de Avatares -->
+              <div class="avatar-picker-card">
+                <h4>🎭 Elige tu Avatar</h4>
+                <p class="picker-subtext">Selecciona tu personaje favorito para la liga y el perfil:</p>
+                <div class="avatar-options-row" id="avatar-options-row">
+                  <button class="avatar-option-chip active" data-avatar="🦁">🦁</button>
+                  <button class="avatar-option-chip" data-avatar="🦉">🦉</button>
+                  <button class="avatar-option-chip" data-avatar="🦊">🦊</button>
+                  <button class="avatar-option-chip" data-avatar="🧑‍🚀">🧑‍🚀</button>
+                  <button class="avatar-option-chip" data-avatar="🐱">🐱</button>
+                  <button class="avatar-option-chip" data-avatar="👑">👑</button>
+                </div>
+              </div>
+
+              <!-- Tienda / Recuperar Vidas y Escudos de Racha -->
+              <div class="refill-hearts-card">
+                <div class="refill-info">
+                  <h4>🛒 Tienda de Gemas</h4>
+                  <p>Utiliza tus gemas acumuladas para recargar corazones o proteger tu racha.</p>
+                </div>
+                <div class="store-items-grid">
+                  <div class="store-item-row">
+                    <div class="store-item-desc">
+                      <strong>❤️ Vidas al Máximo</strong>
+                      <span>Restaura tus 5 corazones al instante</span>
+                    </div>
+                    <button class="primary-btn refill-btn mini-store-btn" id="btn-refill-gems">
+                      30 💎
+                    </button>
+                  </div>
+
+                  <div class="store-item-row">
+                    <div class="store-item-desc">
+                      <strong>🛡️ Escudo de Racha</strong>
+                      <span>Protege tu racha si olvidas practicar 1 día (<span id="streak-freeze-count">0</span> activos)</span>
+                    </div>
+                    <button class="secondary-btn mini-store-btn" id="btn-buy-freeze">
+                      50 💎
+                    </button>
+                  </div>
+
+                  <div class="store-item-row">
+                    <div class="store-item-desc">
+                      <strong>🛡️ Práctica Libre</strong>
+                      <span>Gana vidas gratis completando lecciones de repaso</span>
+                    </div>
+                    <button class="secondary-btn mini-store-btn" id="btn-practice-heart">
+                      Gratis
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Medallas y Logros -->
+              <div class="achievements-section">
+                <h3>Medallas y Logros 🏅</h3>
+                <div class="achievements-grid" id="achievements-container">
+                  <!-- Inyectado dinámicamente por JS según progreso real -->
+                </div>
+              </div>
+
+              <!-- Opciones y Reinicio -->
+              <div class="profile-settings-card">
+                <button class="secondary-btn danger-text" id="btn-reset-progress">
+                  Reiniciar Todo el Progreso
+                </button>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+
+        <!-- BARRA DE NAVEGACIÓN INFERIOR (BOTTOM NAV) CON 5 PESTAÑAS -->
+        <nav class="bottom-nav" role="navigation" aria-label="Navegación principal">
+          <button class="nav-item active" data-view="view-learn" id="nav-btn-learn" aria-label="Ir a sección de Aprender">
+            <span class="nav-icon">🗺️</span>
+            <span class="nav-label">Aprender</span>
+          </button>
+          <button class="nav-item" data-view="view-games" id="nav-btn-games" aria-label="Ir a Arcade de Juegos">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-label">Juegos</span>
+          </button>
+          <button class="nav-item" data-view="view-leaderboard" id="nav-btn-leaderboard" aria-label="Ir a Liga Semanal">
+            <span class="nav-icon">🏆</span>
+            <span class="nav-label">Liga</span>
+          </button>
+          <button class="nav-item" data-view="view-review" id="nav-btn-review" aria-label="Ir a Centro de Repaso">
+            <span class="nav-icon">🃏</span>
+            <span class="nav-label">Repaso</span>
+          </button>
+          <button class="nav-item" data-view="view-profile" id="nav-btn-profile" aria-label="Ir a Perfil de Usuario">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Perfil</span>
+          </button>
+        </nav>
+
+        <!-- CONTENEDOR MODAL PARA LECCIÓN ACTIVA / PANTALLA COMPLETA DE JUEGO -->
+        <div class="game-overlay-modal hidden" id="game-overlay-modal" role="dialog" aria-modal="true">
+          <div class="overlay-header" id="modal-overlay-header">
+            <button class="icon-back-btn" id="btn-close-lesson" title="Cerrar lección" aria-label="Cerrar lección">✕</button>
+            <div class="lesson-progress-bar-container">
+              <div class="lesson-progress-bar" id="lesson-progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="overlay-hearts" id="overlay-hearts-val">❤️ 5</div>
+          </div>
+          <div class="game-modal-body" id="game-modal-body">
+            <!-- Se monta dinámicamente el runner de lección o el juego arcade -->
+          </div>
+        </div>
+
+        <!-- MODAL: SIN VIDAS (CORAZONES AGOTADOS) -->
+        <div class="hearts-alert-modal hidden" id="no-hearts-modal" role="alertdialog" aria-modal="true">
+          <div class="hearts-alert-content animate-scale-up">
+            <div class="heart-broken-icon">💔</div>
+            <h2>¡Te has quedado sin vidas!</h2>
+            <p>Necesitas al menos 1 corazón para continuar las lecciones principales. ¡No te preocupes! Puedes recuperarlos practicando gratis.</p>
+            <div class="hearts-modal-actions">
+              <button class="primary-btn success-btn" id="btn-recover-by-practice">
+                PRACTICAR PARA GANAR ❤️
+              </button>
+              <button class="secondary-btn" id="btn-recover-by-gems">
+                Recargar con 30 💎
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CANVAS DE CONFETI CELEBRATORIO -->
+        <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
