@@ -14,6 +14,7 @@ export class FlashcardsGame {
     this.masteredCount = 0;
     this.reviewCount = 0;
     this.isFlipped = false;
+    this.lastPronunciationTime = 0;
   }
 
   start(category = "all") {
@@ -122,10 +123,16 @@ export class FlashcardsGame {
     const exitBtn = this.container.querySelector("#btn-exit-fc");
 
     const flipCard = () => {
-      soundService.playPop();
-      this.isFlipped = !this.isFlipped;
-      cardInner.classList.toggle("flipped", this.isFlipped);
-    };
+          soundService.playPop();
+          this.isFlipped = !this.isFlipped;
+          cardInner.classList.toggle("flipped", this.isFlipped);
+          // Play word pronunciation on flip (limit rate)
+          const now = Date.now();
+          if (now - this.lastPronunciationTime > 800) {
+            this.lastPronunciationTime = now;
+            speechService.speak(card.word, false);
+          }
+        };
 
     cardBox.addEventListener("click", (e) => {
       if (e.target.closest(".speaker-btn")) return;
