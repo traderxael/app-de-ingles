@@ -600,7 +600,9 @@ export const CURRICULUM = {
     { id: "fc-43", word: "Downtown", translation: "Centro de la ciudad", phonetic: "/ˌdaʊnˈtaʊn/", category: "Ciudad", example: "Let's meet for dinner downtown." },
     { id: "fc-44", word: "Subway", translation: "Metro / Tren subterráneo", phonetic: "/ˈsʌb.weɪ/", category: "Ciudad", example: "Take the subway line blue to get there." },
     { id: "fc-45", word: "Sightseeing", translation: "Hacer turismo / Visitar atracciones", phonetic: "/ˈsaɪtˌsiː.ɪŋ/", category: "Viajes", example: "We spent the whole afternoon sightseeing." }
-  ],
+        // Categoría: Hogar
+        { id: "fc-46", word: "lamp", translation: "Lámpara", phonetic: "/læmp/", category: "Hogar", example: "A lamp hangs above the table." }
+      ],
 
   // Base ampliada para el juego Speed Match con más de 60 parejas rápidas
   speedMatchPool: [
