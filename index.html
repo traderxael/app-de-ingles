@@ -72,6 +72,30 @@
                 </div>
               </div>
 
+              <!-- Centro de Exámenes (filtros y búsqueda) -->
+              <div class="exam-center-card">
+                <div class="exam-center-header">
+                  <h3>📋 Centro de Exámenes</h3>
+                  <span class="exam-count-badge" id="exam-count-badge">8 exámenes</span>
+                </div>
+                <input type="text" class="exam-search-input" id="exam-search-input" placeholder="🔍 Buscar examen..." />
+                <div class="exam-filters-row" id="exam-difficulty-filters">
+                  <button class="exam-filter-pill active" data-difficulty="all">Todos</button>
+                  <button class="exam-filter-pill" data-difficulty="A1">A1</button>
+                  <button class="exam-filter-pill" data-difficulty="A2">A2</button>
+                  <button class="exam-filter-pill" data-difficulty="B1">B1</button>
+                  <button class="exam-filter-pill" data-difficulty="B2">B2</button>
+                </div>
+                <div class="exam-sort-row">
+                  <span class="exam-sort-label">Ordenar por fecha:</span>
+                  <button class="exam-sort-btn active" data-sort="recent">Recientes</button>
+                  <button class="exam-sort-btn" data-sort="oldest">Antiguas</button>
+                </div>
+                <div class="exam-list" id="exam-list-container">
+                  <!-- Se inyecta dinámicamente la lista de exámenes -->
+                </div>
+              </div>
+
               <!-- Camino de aprendizaje interactivo -->
               <div class="learning-path" id="learning-path-container">
                 <!-- Se inyecta dinámicamente con las 7 unidades y niveles -->
