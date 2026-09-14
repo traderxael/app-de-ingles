@@ -14,6 +14,8 @@ const DEFAULT_STATE = {
   dailyGoalDone: false,
   completedLessons: ["u1-l1"],
   unlockedUnits: ["unit-1"],
+  completedExams: [],
+  examScores: {},
   soundEnabled: true,
   theme: "light",
   cardReviews: {}, // SRS: { [cardId]: { correct: 0, wrong: 0, level: 0, lastReview: string } }
@@ -375,6 +377,20 @@ class StorageService {
     ];
   }
 
+  isExamCompleted(examId) {
+    return (this.state.completedExams || []).includes(examId);
+  }
+
+  recordExamResult(examId, passed, score, total) {
+    if (!this.state.completedExams) this.state.completedExams = [];
+    if (!this.state.examScores) this.state.examScores = {};
+    this.state.examScores[examId] = { score, total, passed };
+    if (passed && !this.state.completedExams.includes(examId)) {
+      this.state.completedExams.push(examId);
+    }
+    this.saveState();
+  }
+
   toggleSound() {
     this.state.soundEnabled = !this.state.soundEnabled;
     this.saveState();
@@ -392,7 +408,9 @@ class StorageService {
       ...DEFAULT_STATE, 
       completedLessons: [], 
       cardReviews: {},
-      arcadeStats: { maxCombo: 0, speedMatchesPlayed: 0, roleplaysCompleted: 0, wordFallHighScore: 0, scramblesCompleted: 0, audioDetectivesCompleted: 0 }
+      arcadeStats: { maxCombo: 0, speedMatchesPlayed: 0, roleplaysCompleted: 0, wordFallHighScore: 0, scramblesCompleted: 0, audioDetectivesCompleted: 0 },
+      completedExams: [],
+      examScores: {}
     };
     this.saveState();
   }

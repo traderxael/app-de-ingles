@@ -10,6 +10,7 @@ import { RoleplayGame } from "./games/roleplay.js";
 import { WordFallGame } from "./games/wordFall.js";
 import { SentenceScrambleGame } from "./games/sentenceScramble.js";
 import { AudioDetectiveGame } from "./games/audioDetective.js";
+import { ExamRunner } from "./games/examRunner.js";
 
 class App {
   constructor() {
@@ -208,7 +209,179 @@ class App {
       });
 
       container.appendChild(unitSection);
+
+      // Nodo de Examen al final de cada unidad
+      const unitExamId = `exam-${unit.id}`;
+      const examUnlocked = unit.lessons.every(l => storageService.isLessonCompleted(l.id));
+      const examPassed = storageService.isExamCompleted(unitExamId);
+
+      const examNode = document.createElement("div");
+      examNode.className = "path-node-wrapper exam-node";
+      examNode.innerHTML = `
+        ${examPassed ? `<span class="node-crown">👑</span>` : ""}
+        <button class="node-btn ${examPassed ? "completed" : ""} ${!examUnlocked ? "locked" : ""}"
+          style="--node-color: var(--color-purple); --node-shadow: var(--color-purple-dark);">
+          ${examPassed ? "👑" : examUnlocked ? "📝" : "🔒"}
+        </button>
+        <span class="node-label">Examen</span>
+      `;
+
+      examNode.querySelector(".node-btn").addEventListener("click", () => {
+        if (!examUnlocked) {
+          soundService.playWrong();
+          alert("🔒 Completa todas las lecciones de la unidad para desbloquear el examen.");
+          return;
+        }
+        this.startUnitExam(unit);
+      });
+
+      nodesFlow.appendChild(examNode);
     });
+
+    // Examen Final del Curso
+    const finalPassed = storageService.isExamCompleted("exam-final");
+    const finalUnlocked = CURRICULUM.units.every(u => storageService.isExamCompleted(`exam-${u.id}`));
+
+    const finalSection = document.createElement("div");
+    finalSection.className = "unit-section final-exam-section";
+    finalSection.innerHTML = `
+      <div class="final-exam-card ${finalPassed ? "passed" : ""} ${!finalUnlocked ? "locked" : ""}">
+        <div class="final-exam-icon">${finalPassed ? "👑" : finalUnlocked ? "🎓" : "🔒"}</div>
+        <div class="final-exam-info">
+          <h4>Examen Final del Curso</h4>
+          <p>${finalUnlocked ? "¡Estás listo! Demuestra tu dominio completo del inglés." : "Supera los 7 exámenes de unidad para desbloquear el examen final."}</p>
+        </div>
+        <button class="primary-btn" id="btn-start-final-exam">${finalPassed ? "Repasar" : "Comenzar"}</button>
+      </div>
+    `;
+
+    finalSection.querySelector("#btn-start-final-exam").addEventListener("click", () => {
+      if (!finalUnlocked) {
+        soundService.playWrong();
+        alert("🔒 Supera los 7 exámenes de unidad para desbloquear el examen final.");
+        return;
+      }
+      this.startFinalExam();
+    });
+
+    container.appendChild(finalSection);
+  }
+
+  // =========================================================================
+  // EXÁMENES (POR UNIDAD Y FINAL)
+  // =========================================================================
+  _shuffleArray(arr) {
+    return [...arr].sort(() => Math.random() - 0.5);
+  }
+
+  _buildExamQuestions(exercises, flashcards, count) {
+    const pool = [];
+    const allSolutions = exercises.filter(e => e.solution).map(e => e.solution.join(" "));
+    const allTranslations = [
+      ...flashcards.map(c => c.translation),
+      ...exercises.filter(e => e.type === "listen_choose" && e.translation).map(e => e.translation)
+    ];
+
+    exercises.forEach(ex => {
+      if (ex.type === "multiple_choice") {
+        pool.push({
+          prompt: ex.prompt,
+          options: [...ex.options],
+          correctIndex: ex.correctIndex,
+          explanation: ex.explanation || ""
+        });
+      } else if (ex.type === "translate_to_en") {
+        const correct = ex.solution.join(" ");
+        const distractors = this._shuffleArray(allSolutions.filter(s => s !== correct)).slice(0, 3);
+        const opts = this._shuffleArray([correct, ...distractors]);
+        pool.push({
+          prompt: `¿Cómo se dice "${ex.prompt}" en inglés?`,
+          options: opts,
+          correctIndex: opts.indexOf(correct),
+          explanation: `Respuesta correcta: "${correct}"`
+        });
+      } else if (ex.type === "listen_choose") {
+        const correct = ex.translation;
+        const distractors = this._shuffleArray(allTranslations.filter(t => t !== correct)).slice(0, 3);
+        const opts = this._shuffleArray([correct, ...distractors]);
+        pool.push({
+          prompt: `¿Cuál es el significado de "${ex.sentence}"?`,
+          options: opts,
+          correctIndex: opts.indexOf(correct),
+          explanation: `"${ex.sentence}" significa ${correct}`
+        });
+      }
+    });
+
+    // Complementar con preguntas de vocabulario (flashcards) si faltan
+    if (pool.length < count) {
+      flashcards.forEach(c => {
+        const distractors = this._shuffleArray(allTranslations.filter(t => t !== c.translation)).slice(0, 3);
+        const opts = this._shuffleArray([c.translation, ...distractors]);
+        pool.push({
+          prompt: `¿Qué significa "${c.word}"?`,
+          options: opts,
+          correctIndex: opts.indexOf(c.translation),
+          explanation: `"${c.word}" significa ${c.translation}`
+        });
+      });
+    }
+
+    return this._shuffleArray(pool).slice(0, count);
+  }
+
+  startUnitExam(unit) {
+    const exercises = unit.lessons.flatMap(l => l.exercises);
+    const questions = this._buildExamQuestions(exercises, CURRICULUM.flashcards, 10);
+    if (questions.length === 0) {
+      alert("No hay preguntas disponibles para este examen.");
+      return;
+    }
+    this._launchExam(`Examen: ${unit.title.split(":")[0]}`, questions, `exam-${unit.id}`, 30, 15);
+  }
+
+  startFinalExam() {
+    const exercises = CURRICULUM.units.flatMap(u => u.lessons.flatMap(l => l.exercises));
+    const questions = this._buildExamQuestions(exercises, CURRICULUM.flashcards, 15);
+    this._launchExam("Examen Final del Curso", questions, "exam-final", 100, 50);
+  }
+
+  _launchExam(title, questions, examId, xpReward, gemsReward) {
+    soundService.playPop();
+    const modal = document.getElementById("game-overlay-modal");
+    const modalHeader = document.getElementById("modal-overlay-header");
+    const body = document.getElementById("game-modal-body");
+    const progressFill = document.getElementById("lesson-progress-fill");
+
+    if (modalHeader) modalHeader.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    progressFill.style.width = "0%";
+    this.updateHud();
+
+    this.activeArcadeGame = new ExamRunner({
+      container: body,
+      title,
+      questions,
+      onProgressUpdate: (curr, total) => {
+        progressFill.style.width = `${Math.round((curr / total) * 100)}%`;
+      },
+      onComplete: ({ score, total, pct, passed }) => {
+        storageService.recordExamResult(examId, passed, score, total);
+        if (passed) {
+          storageService.addXp(xpReward);
+          storageService.addGems(gemsReward);
+          this.triggerConfetti();
+        } else {
+          storageService.addXp(Math.round(xpReward * 0.2));
+        }
+        this.updateHud();
+        this.renderLearningPath();
+        modal.classList.add("hidden");
+        this.activeArcadeGame = null;
+      }
+    });
+
+    this.activeArcadeGame.start();
   }
 
   updateDailyGoalBanner() {
