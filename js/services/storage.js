@@ -384,7 +384,7 @@ class StorageService {
   recordExamResult(examId, passed, score, total) {
     if (!this.state.completedExams) this.state.completedExams = [];
     if (!this.state.examScores) this.state.examScores = {};
-    this.state.examScores[examId] = { score, total, passed };
+    this.state.examScores[examId] = { score, total, passed, date: new Date().toISOString() };
     if (passed && !this.state.completedExams.includes(examId)) {
       this.state.completedExams.push(examId);
     }

@@ -18,6 +18,9 @@ class App {
     this.activeExerciseRunner = null;
     this.activeArcadeGame = null;
     this.selectedVocabCategory = "all";
+    this.examDifficultyFilter = "all";
+    this.examSortOrder = "recent";
+    this.examSearchQuery = "";
     this.init();
   }
 
@@ -28,6 +31,7 @@ class App {
     this.setupHudControls();
     this.setupDesktopFrameToggle();
     this.renderLearningPath();
+    this.setupExamCenter();
     this.setupArcadeCards();
     this.setupLeaderboardTab();
     this.setupReviewTab();
@@ -376,12 +380,161 @@ class App {
         }
         this.updateHud();
         this.renderLearningPath();
+        this.renderExamList();
         modal.classList.add("hidden");
         this.activeArcadeGame = null;
       }
     });
 
     this.activeArcadeGame.start();
+  }
+
+  // =========================================================================
+  // CENTRO DE EXÁMENES (FILTROS Y BÚSQUEDA)
+  // =========================================================================
+  setupExamCenter() {
+    const search = document.getElementById("exam-search-input");
+    if (search) {
+      search.addEventListener("input", () => {
+        this.examSearchQuery = search.value;
+        this.renderExamList();
+      });
+    }
+
+    const filters = document.getElementById("exam-difficulty-filters");
+    if (filters) {
+      filters.addEventListener("click", (e) => {
+        const pill = e.target.closest(".exam-filter-pill");
+        if (!pill) return;
+        soundService.playPop();
+        filters.querySelectorAll(".exam-filter-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        this.examDifficultyFilter = pill.dataset.difficulty;
+        this.renderExamList();
+      });
+    }
+
+    const sortRow = document.querySelector(".exam-sort-row");
+    if (sortRow) {
+      sortRow.addEventListener("click", (e) => {
+        const btn = e.target.closest(".exam-sort-btn");
+        if (!btn) return;
+        soundService.playPop();
+        sortRow.querySelectorAll(".exam-sort-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        this.examSortOrder = btn.dataset.sort;
+        this.renderExamList();
+      });
+    }
+
+    this.renderExamList();
+  }
+
+  _getAllExams() {
+    const difficultyMap = { "unit-1": "A1", "unit-2": "A1", "unit-3": "A2", "unit-4": "A2", "unit-5": "B1", "unit-6": "B1", "unit-7": "B2" };
+    const scores = storageService.getState().examScores || {};
+
+    const exams = CURRICULUM.units.map(u => {
+      const id = `exam-${u.id}`;
+      const result = scores[id];
+      return {
+        id,
+        title: `Examen ${u.title}`,
+        icon: u.icon,
+        difficulty: difficultyMap[u.id] || "A1",
+        unlocked: u.lessons.every(l => storageService.isLessonCompleted(l.id)),
+        passed: storageService.isExamCompleted(id),
+        date: (result && result.date) || null,
+        xp: 30
+      };
+    });
+
+    const finalResult = scores["exam-final"];
+    exams.push({
+      id: "exam-final",
+      title: "Examen Final del Curso",
+      icon: "🎓",
+      difficulty: "B2",
+      unlocked: CURRICULUM.units.every(u => storageService.isExamCompleted(`exam-${u.id}`)),
+      passed: storageService.isExamCompleted("exam-final"),
+      date: (finalResult && finalResult.date) || null,
+      xp: 100
+    });
+
+    return exams;
+  }
+
+  _formatExamDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" });
+    } catch (e) {
+      return "";
+    }
+  }
+
+  renderExamList() {
+    const list = document.getElementById("exam-list-container");
+    const countBadge = document.getElementById("exam-count-badge");
+    if (!list) return;
+
+    const exams = this._getAllExams();
+    let filtered = exams.filter(e => {
+      if (this.examDifficultyFilter !== "all" && e.difficulty !== this.examDifficultyFilter) return false;
+      if (this.examSearchQuery && !e.title.toLowerCase().includes(this.examSearchQuery.toLowerCase())) return false;
+      return true;
+    });
+
+    filtered.sort((a, b) => {
+      if (this.examSortOrder === "recent") {
+        return (b.date || "").localeCompare(a.date || "");
+      }
+      return (a.date || "").localeCompare(b.date || "");
+    });
+
+    if (countBadge) countBadge.textContent = `${filtered.length} examen(es)`;
+
+    if (filtered.length === 0) {
+      list.innerHTML = `<p class="empty-vocab-msg">No se encontraron exámenes con estos filtros.</p>`;
+      return;
+    }
+
+    list.innerHTML = filtered.map(e => `
+      <div class="exam-list-item ${e.passed ? "passed" : ""} ${!e.unlocked ? "locked" : ""}">
+        <div class="exam-item-icon">${e.passed ? "👑" : e.unlocked ? e.icon : "🔒"}</div>
+        <div class="exam-item-info">
+          <strong class="exam-item-title">${e.title}</strong>
+          <div class="exam-item-meta">
+            <span class="exam-difficulty-pill diff-${e.difficulty}">${e.difficulty}</span>
+            <span class="exam-item-status">${e.passed ? "✓ Aprobado" : e.unlocked ? "Pendiente" : "Bloqueado"}</span>
+            ${e.date ? `<span class="exam-item-date">📅 ${this._formatExamDate(e.date)}</span>` : ""}
+          </div>
+        </div>
+        <button class="mini-store-btn" data-exam-id="${e.id}">${e.passed ? "Repasar" : "Iniciar"}</button>
+      </div>
+    `).join("");
+
+    list.querySelectorAll("[data-exam-id]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.examId;
+        if (id === "exam-final") {
+          if (!CURRICULUM.units.every(u => storageService.isExamCompleted(`exam-${u.id}`))) {
+            soundService.playWrong();
+            alert("🔒 Supera los 7 exámenes de unidad para desbloquear el examen final.");
+            return;
+          }
+          this.startFinalExam();
+        } else {
+          const unit = CURRICULUM.units.find(u => `exam-${u.id}` === id);
+          if (!unit) return;
+          if (!unit.lessons.every(l => storageService.isLessonCompleted(l.id))) {
+            soundService.playWrong();
+            alert("🔒 Completa todas las lecciones de la unidad para desbloquear el examen.");
+            return;
+          }
+          this.startUnitExam(unit);
+        }
+      });
+    });
   }
 
   updateDailyGoalBanner() {
