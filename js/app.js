@@ -38,6 +38,7 @@ class App {
     this.setupProfileTab();
     this.setupAvatarPicker();
     this.setupModals();
+    this.setupDashboard();
   }
 
   // =========================================================================
@@ -141,6 +142,8 @@ class App {
       this.updateDailyGoalBanner();
     } else if (viewId === "view-leaderboard") {
       this.renderLeaderboard();
+    } else if (viewId === "view-dashboard") {
+      this.renderDashboard();
     }
   }
 
@@ -535,6 +538,94 @@ class App {
         }
       });
     });
+  }
+
+  // =========================================================================
+  // VISTA 6: PANEL DE RENDIMIENTO (DASHBOARD)
+  // =========================================================================
+  setupDashboard() {
+    this.renderDashboard();
+  }
+
+  renderDashboard() {
+    const container = document.getElementById("view-dashboard");
+    if (!container) return;
+
+    const exams = this._getAllExams();
+    const totalExams = exams.length;
+    const passedExams = exams.filter(e => e.passed);
+    const passedCount = passedExams.length;
+    const passRate = totalExams ? Math.round((passedCount / totalExams) * 100) : 0;
+
+    // Nivel promedio de dificultad alcanzado (solo exámenes aprobados)
+    const diffMap = { A1: 1, A2: 2, B1: 3, B2: 4 };
+    const diffLabels = { 1: "A1", 2: "A2", 3: "B1", 4: "B2" };
+    let avgLevel = "—";
+    if (passedCount > 0) {
+      const sum = passedExams.reduce((s, e) => s + (diffMap[e.difficulty] || 1), 0);
+      avgLevel = diffLabels[Math.round(sum / passedCount)];
+    }
+
+    // Conteo de aprobados por nivel
+    const levels = ["A1", "A2", "B1", "B2"];
+    const counts = levels.map(l => ({ level: l, count: passedExams.filter(e => e.difficulty === l).length }));
+    const maxCount = Math.max(1, ...counts.map(c => c.count));
+
+    // Historial de exámenes intentados (con fecha)
+    const scores = storageService.getState().examScores || {};
+    const attempted = exams
+      .filter(e => scores[e.id])
+      .map(e => ({ ...e, result: scores[e.id] }))
+      .sort((a, b) => (b.result.date || "").localeCompare(a.result.date || ""));
+
+    // Donut de aprobación
+    const donutFg = document.getElementById("dash-donut-fg");
+    const donutText = document.getElementById("dash-donut-text");
+    if (donutFg) {
+      donutFg.style.strokeDasharray = `${passRate} ${100 - passRate}`;
+      donutFg.style.strokeDashoffset = "25";
+    }
+    if (donutText) donutText.textContent = `${passRate}%`;
+
+    const passedValueEl = document.getElementById("dash-passed-value");
+    if (passedValueEl) passedValueEl.textContent = `${passedCount} / ${totalExams}`;
+
+    const avgLevelEl = document.getElementById("dash-avg-level");
+    if (avgLevelEl) avgLevelEl.textContent = avgLevel;
+
+    const avgValueEl = document.getElementById("dash-avg-value");
+    if (avgValueEl) avgValueEl.textContent = passedCount > 0 ? `Dificultad ${avgLevel}` : "Sin exámenes";
+
+    // Gráfico de barras por nivel
+    const barChart = document.getElementById("dash-bar-chart");
+    if (barChart) {
+      barChart.innerHTML = counts.map(c => `
+        <div class="bar-col">
+          <div class="bar-fill-wrap">
+            <div class="bar-fill diff-${c.level}" style="height: ${(c.count / maxCount) * 100}%"></div>
+            <span class="bar-value">${c.count}</span>
+          </div>
+          <span class="bar-label">${c.level}</span>
+        </div>
+      `).join("");
+    }
+
+    // Historial
+    const resultsList = document.getElementById("dash-results-list");
+    if (resultsList) {
+      resultsList.innerHTML = attempted.length
+        ? attempted.map(e => `
+          <div class="dash-result-item ${e.passed ? "passed" : "failed"}">
+            <span class="dash-result-icon">${e.passed ? "✓" : "✗"}</span>
+            <div class="dash-result-info">
+              <strong>${e.title}</strong>
+              <span>${e.result.score}/${e.result.total} • ${this._formatExamDate(e.result.date)}</span>
+            </div>
+            <span class="exam-difficulty-pill diff-${e.difficulty}">${e.difficulty}</span>
+          </div>
+        `).join("")
+        : `<p class="empty-vocab-msg">Aún no has realizado ningún examen.</p>`;
+    }
   }
 
   updateDailyGoalBanner() {
