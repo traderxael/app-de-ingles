@@ -720,6 +720,234 @@ body {
 }
 
 /* ==========================================================================
+   VISTA 6: PANEL DE RENDIMIENTO (DASHBOARD)
+   ========================================================================== */
+.dashboard-hero {
+  margin-bottom: 18px;
+}
+
+.dashboard-hero h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--text-main);
+}
+
+.dashboard-hero p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.dash-stat-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.dash-stat-card {
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.donut-chart {
+  width: 90px;
+  height: 90px;
+  transform: rotate(0deg);
+}
+
+.donut-bg {
+  fill: none;
+  stroke: var(--bg-surface-secondary);
+  stroke-width: 4;
+}
+
+.donut-fg {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+
+.donut-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.5rem;
+  fill: var(--text-main);
+}
+
+.dash-stat-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.dash-stat-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.dash-level-badge {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: var(--color-purple);
+  background: rgba(206, 130, 255, 0.12);
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid var(--color-purple);
+}
+
+.dash-chart-card {
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.dash-chart-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 10px;
+  height: 160px;
+  padding-top: 10px;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar-fill-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.bar-fill {
+  width: 70%;
+  min-height: 4px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: height 0.5s ease;
+  background-color: var(--color-blue);
+}
+
+.bar-fill.diff-A1 { background-color: var(--color-primary); }
+.bar-fill.diff-A2 { background-color: var(--color-blue); }
+.bar-fill.diff-B1 { background-color: var(--color-orange); }
+.bar-fill.diff-B2 { background-color: var(--color-purple); }
+
+.bar-value {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.bar-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.dash-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dash-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background-color: var(--bg-surface-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.dash-result-item.passed {
+  border-left: 4px solid var(--color-primary);
+}
+
+.dash-result-item.failed {
+  border-left: 4px solid var(--color-red);
+}
+
+.dash-result-icon {
+  font-weight: 900;
+  font-size: 1.1rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dash-result-item.passed .dash-result-icon {
+  background: rgba(88, 204, 2, 0.15);
+  color: var(--color-primary-dark);
+}
+
+.dash-result-item.failed .dash-result-icon {
+  background: rgba(255, 75, 75, 0.15);
+  color: var(--color-red-dark);
+}
+
+.dash-result-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-result-info strong {
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.dash-result-info span {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
    VISTA 2: ARCADE DE JUEGOS (GAMES)
    ========================================================================== */
 .arcade-hero {

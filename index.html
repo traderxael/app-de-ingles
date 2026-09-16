@@ -377,9 +377,51 @@
             </div>
           </section>
 
+          <!-- VISTA 6: PANEL DE RENDIMIENTO (DASHBOARD) -->
+          <section id="view-dashboard" class="app-view" aria-labelledby="nav-btn-dashboard">
+            <div class="view-scroll-content">
+              <div class="dashboard-hero">
+                <h2>📊 Panel de Rendimiento</h2>
+                <p>Tu progreso en exámenes y nivel de dificultad alcanzado</p>
+              </div>
+
+              <div class="dash-stat-cards">
+                <div class="dash-stat-card">
+                  <svg class="donut-chart" viewBox="0 0 42 42">
+                    <circle class="donut-bg" cx="21" cy="21" r="15.915"></circle>
+                    <circle class="donut-fg" cx="21" cy="21" r="15.915" id="dash-donut-fg"></circle>
+                  </svg>
+                  <span class="donut-text" id="dash-donut-text">0%</span>
+                  <div class="dash-stat-label">Exámenes Aprobados</div>
+                  <div class="dash-stat-value" id="dash-passed-value">0 / 8</div>
+                </div>
+
+                <div class="dash-stat-card">
+                  <div class="dash-level-badge" id="dash-avg-level">—</div>
+                  <div class="dash-stat-label">Nivel Promedio</div>
+                  <div class="dash-stat-value" id="dash-avg-value">Sin exámenes</div>
+                </div>
+              </div>
+
+              <div class="dash-chart-card">
+                <h3>📈 Exámenes Aprobados por Nivel</h3>
+                <div class="bar-chart" id="dash-bar-chart">
+                  <!-- Se inyecta dinámicamente -->
+                </div>
+              </div>
+
+              <div class="dash-chart-card">
+                <h3>📋 Historial de Exámenes</h3>
+                <div class="dash-results-list" id="dash-results-list">
+                  <!-- Se inyecta dinámicamente -->
+                </div>
+              </div>
+            </div>
+          </section>
+
         </div>
 
-        <!-- BARRA DE NAVEGACIÓN INFERIOR (BOTTOM NAV) CON 5 PESTAÑAS -->
+        <!-- BARRA DE NAVEGACIÓN INFERIOR (BOTTOM NAV) -->
         <nav class="bottom-nav" role="navigation" aria-label="Navegación principal">
           <button class="nav-item active" data-view="view-learn" id="nav-btn-learn" aria-label="Ir a sección de Aprender">
             <span class="nav-icon">🗺️</span>
@@ -400,6 +442,10 @@
           <button class="nav-item" data-view="view-profile" id="nav-btn-profile" aria-label="Ir a Perfil de Usuario">
             <span class="nav-icon">👤</span>
             <span class="nav-label">Perfil</span>
+          </button>
+          <button class="nav-item" data-view="view-dashboard" id="nav-btn-dashboard" aria-label="Ir a Panel de Rendimiento">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Panel</span>
           </button>
         </nav>
 
