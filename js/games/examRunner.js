@@ -11,6 +11,7 @@ export class ExamRunner {
     this.currentIndex = 0;
     this.score = 0;
     this.isAnswerChecked = false;
+    this.wrongQuestions = [];
     this.onComplete = options.onComplete || (() => {});
     this.onProgressUpdate = options.onProgressUpdate || (() => {});
   }
@@ -108,6 +109,12 @@ export class ExamRunner {
               <span>${q.explanation || ""}</span>
             </div>
           `;
+          this.wrongQuestions.push({
+            prompt: q.prompt,
+            options: [...q.options],
+            correctIndex: q.correctIndex,
+            explanation: q.explanation || ""
+          });
         }
         const isLast = this.currentIndex === this.questions.length - 1;
         checkBtn.textContent = isLast ? "VER RESULTADOS" : "CONTINUAR";
@@ -164,7 +171,7 @@ export class ExamRunner {
     `;
 
     this.container.querySelector("#btn-finish-exam").addEventListener("click", () => {
-      this.onComplete({ score, total, pct, passed });
+      this.onComplete({ score, total, pct, passed, wrongQuestions: this.wrongQuestions });
     });
   }
 }
