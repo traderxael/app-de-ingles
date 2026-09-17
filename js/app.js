@@ -11,6 +11,7 @@ import { WordFallGame } from "./games/wordFall.js";
 import { SentenceScrambleGame } from "./games/sentenceScramble.js";
 import { AudioDetectiveGame } from "./games/audioDetective.js";
 import { ExamRunner } from "./games/examRunner.js";
+import { notificationService } from "./services/notifications.js";
 
 class App {
   constructor() {
@@ -39,6 +40,33 @@ class App {
     this.setupAvatarPicker();
     this.setupModals();
     this.setupDashboard();
+    this.setupNotifications();
+    notificationService.init();
+  }
+
+  setupNotifications() {
+    const toggle = document.getElementById("notif-toggle-input");
+    if (!toggle) return;
+
+    const state = storageService.getState();
+    toggle.checked = state.notificationsEnabled === true;
+
+    toggle.addEventListener("change", async () => {
+      if (toggle.checked) {
+        const result = await notificationService.requestPermission();
+        if (!result.granted) {
+          toggle.checked = false;
+          alert("No se pudieron activar las notificaciones. Revisa los permisos del navegador para este sitio.");
+          return;
+        }
+        storageService.setNotificationsEnabled(true);
+        soundService.playCorrect();
+        alert("¡Notificaciones activadas! Te recordaremos diariamente completar tus exámenes. 🔔");
+      } else {
+        storageService.setNotificationsEnabled(false);
+        soundService.playPop();
+      }
+    });
   }
 
   // =========================================================================
