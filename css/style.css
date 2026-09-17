@@ -1779,6 +1779,159 @@ body {
   color: var(--color-primary-dark);
 }
 
+/* Barra de progreso de medallas */
+.badge-progress-card {
+  background-color: var(--bg-surface-secondary);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.badge-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.badge-progress-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.badge-progress-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.badge-progress-track {
+  height: 10px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.badge-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFC800, #FF9600);
+  border-radius: var(--radius-pill);
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Filtros de medallas por categoría */
+.badge-filter-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  scrollbar-width: none;
+}
+
+.badge-filter-row::-webkit-scrollbar { display: none; }
+
+.badge-filter-pill {
+  background-color: var(--bg-surface-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.badge-filter-pill:hover {
+  border-color: var(--color-yellow);
+  color: var(--text-main);
+}
+
+.badge-filter-pill.active {
+  background-color: var(--color-yellow);
+  border-color: var(--color-yellow-dark);
+  color: #634700;
+  box-shadow: 0 2px 0 var(--color-yellow-dark);
+}
+
+/* Toast de medalla desbloqueada */
+.badge-unlock-toast {
+  position: absolute;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  background-color: var(--bg-surface);
+  border: 2px solid var(--color-yellow);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 90;
+  max-width: 340px;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.badge-unlock-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-badge-icon-wrap {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FFC800, #FF9600);
+  border-radius: 50%;
+  box-shadow: 0 3px 0 #E5B400;
+  animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.toast-badge-icon {
+  font-size: 1.8rem;
+}
+
+.toast-badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.toast-badge-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--color-orange-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toast-badge-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.toast-badge-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 .profile-settings-card {
   margin-top: 24px;
   text-align: center;

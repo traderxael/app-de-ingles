@@ -1,4 +1,6 @@
 // Servicio de Persistencia y Gestión del Progreso del Usuario - LingoQuest English
+import { badgeService } from "./badges.js";
+
 const STORAGE_KEY = "lingoquest_player_state_v3";
 
 const DEFAULT_STATE = {
@@ -22,6 +24,7 @@ const DEFAULT_STATE = {
   lastNotificationDate: "",
   cardReviews: {}, // SRS: { [cardId]: { correct: 0, wrong: 0, level: 0, lastReview: string } }
   wrongQuestions: [], // Preguntas falladas en exámenes para repaso de errores
+  unlockedBadges: [], // IDs de medallas desbloqueadas
   arcadeStats: {
     maxCombo: 0,
     speedMatchesPlayed: 0,
@@ -307,77 +310,32 @@ class StorageService {
     }));
   }
 
-  // Evaluación dinámica de logros y medallas ampliada
-  getAchievements(totalUnitsCount = 7) {
-    const state = this.state;
-    const srsStats = this.getSrsStats();
-    const arcade = state.arcadeStats || { maxCombo: 0, speedMatchesPlayed: 0, roleplaysCompleted: 0, wordFallHighScore: 0, scramblesCompleted: 0, audioDetectivesCompleted: 0 };
+  // Devuelve todas las medallas con su estado de desbloqueo
+  getBadges(curriculum) {
+    return badgeService.getAllBadges(this.state, curriculum);
+  }
 
-    return [
-      {
-        id: "ach-first-step",
-        title: "Primer Paso",
-        description: "Completa tu primera lección",
-        icon: "🚀",
-        unlocked: (state.completedLessons && state.completedLessons.length > 0)
-      },
-      {
-        id: "ach-streak",
-        title: "En Racha",
-        description: "Mantén una racha de al menos 1 día",
-        icon: "🔥",
-        unlocked: state.streak >= 1
-      },
-      {
-        id: "ach-speed",
-        title: "Rayo Veloz",
-        description: "Haz un combo x3 en Speed Match",
-        icon: "⚡",
-        unlocked: arcade.maxCombo >= 3
-      },
-      {
-        id: "ach-wordfall",
-        title: "Lluvia Precisa",
-        description: "Alcanza 100 puntos en Word Fall",
-        icon: "🌧️",
-        unlocked: (arcade.wordFallHighScore || 0) >= 100
-      },
-      {
-        id: "ach-scramble",
-        title: "Maestro Sintáctico",
-        description: "Completa un desafío de Sentence Scramble",
-        icon: "🧩",
-        unlocked: (arcade.scramblesCompleted || 0) >= 1
-      },
-      {
-        id: "ach-detective",
-        title: "Oído Detective",
-        description: "Supera un desafío de Audio Detective",
-        icon: "🎧",
-        unlocked: (arcade.audioDetectivesCompleted || 0) >= 1
-      },
-      {
-        id: "ach-speaker",
-        title: "Hablante Confiado",
-        description: "Completa un escenario de conversación",
-        icon: "🎭",
-        unlocked: arcade.roleplaysCompleted >= 1
-      },
-      {
-        id: "ach-srs-master",
-        title: "Mente Brillante",
-        description: "Domina al menos 15 palabras en Flashcards",
-        icon: "🧠",
-        unlocked: srsStats.mastered >= 15
-      },
-      {
-        id: "ach-polyglot",
-        title: "Políglota",
-        description: "Completa todas las unidades del curso",
-        icon: "👑",
-        unlocked: state.completedLessons.length >= totalUnitsCount * 2
-      }
-    ];
+  // Comprueba y registra nuevas medallas desbloqueadas
+  checkBadgeUnlocks(curriculum) {
+    if (!this.state.unlockedBadges) this.state.unlockedBadges = [];
+    const alreadyUnlocked = [...this.state.unlockedBadges];
+    const newlyUnlocked = badgeService.getNewlyUnlocked(this.state, curriculum, alreadyUnlocked);
+
+    if (newlyUnlocked.length > 0) {
+      newlyUnlocked.forEach(b => {
+        if (!this.state.unlockedBadges.includes(b.id)) {
+          this.state.unlockedBadges.push(b.id);
+        }
+      });
+      this.saveState();
+    }
+
+    return newlyUnlocked;
+  }
+
+  // Estadísticas de progreso de medallas
+  getBadgeProgress(curriculum) {
+    return badgeService.getProgress(this.state, curriculum);
   }
 
   isExamCompleted(examId) {
@@ -460,6 +418,7 @@ class StorageService {
       completedExams: [],
       examScores: {},
       wrongQuestions: [],
+      unlockedBadges: [],
       notificationsEnabled: false,
       lastNotificationDate: ""
     };

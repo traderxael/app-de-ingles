@@ -12,6 +12,7 @@ import { SentenceScrambleGame } from "./games/sentenceScramble.js";
 import { AudioDetectiveGame } from "./games/audioDetective.js";
 import { ExamRunner } from "./games/examRunner.js";
 import { notificationService } from "./services/notifications.js";
+import { BADGE_CATEGORIES, badgeService } from "./services/badges.js";
 
 class App {
   constructor() {
@@ -22,6 +23,7 @@ class App {
     this.examDifficultyFilter = "all";
     this.examSortOrder = "recent";
     this.examSearchQuery = "";
+    this.badgeFilterCategory = "all";
     this.init();
   }
 
@@ -40,8 +42,52 @@ class App {
     this.setupAvatarPicker();
     this.setupModals();
     this.setupDashboard();
+    this.setupBadgeFilters();
     this.setupNotifications();
     notificationService.init();
+  }
+
+  // =========================================================================
+  // SISTEMA DE MEDALLAS Y LOGROS
+  // =========================================================================
+  setupBadgeFilters() {
+    const row = document.getElementById("badge-filter-row");
+    if (!row) return;
+    row.addEventListener("click", (e) => {
+      const pill = e.target.closest(".badge-filter-pill");
+      if (!pill) return;
+      soundService.playPop();
+      row.querySelectorAll(".badge-filter-pill").forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      this.badgeFilterCategory = pill.dataset.category || "all";
+      this.renderAchievements();
+    });
+  }
+
+  // Comprueba medallas nuevas y muestra un toast de celebración
+  checkBadges() {
+    const newlyUnlocked = storageService.checkBadgeUnlocks(CURRICULUM);
+    if (newlyUnlocked.length > 0) {
+      newlyUnlocked.forEach(b => this.showBadgeUnlockToast(b));
+      this.renderAchievements();
+      this.updateProfileStats();
+    }
+  }
+
+  showBadgeUnlockToast(badge) {
+    const toast = document.getElementById("badge-unlock-toast");
+    if (!toast) return;
+
+    toast.querySelector(".toast-badge-icon").textContent = badge.icon;
+    toast.querySelector(".toast-badge-title").textContent = badge.title;
+    toast.querySelector(".toast-badge-desc").textContent = badge.description;
+
+    toast.classList.add("show");
+    soundService.playFanfare();
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 4500);
   }
 
   setupNotifications() {
@@ -416,6 +462,7 @@ class App {
         this.renderLearningPath();
         this.renderExamList();
         this.renderWrongQuestionsReview();
+        this.checkBadges();
         modal.classList.add("hidden");
         this.activeArcadeGame = null;
       }
@@ -745,6 +792,7 @@ class App {
 
     this.updateHud();
     this.renderLearningPath();
+    this.checkBadges();
 
     const body = document.getElementById("game-modal-body");
     body.innerHTML = `
@@ -884,6 +932,7 @@ class App {
       this.updateHud();
       this.updateReviewStats();
       this.updateProfileStats();
+      this.checkBadges();
     };
 
     initGameFn(body, closeFn);
@@ -1044,6 +1093,7 @@ class App {
         }
         this.updateHud();
         this.renderWrongQuestionsReview();
+        this.checkBadges();
         modal.classList.add("hidden");
         this.activeArcadeGame = null;
       }
@@ -1233,10 +1283,32 @@ class App {
 
   renderAchievements() {
     const container = document.getElementById("achievements-container");
+    const filterRow = document.getElementById("badge-filter-row");
+    const progressBar = document.getElementById("badge-progress-bar");
+    const progressText = document.getElementById("badge-progress-text");
     if (!container) return;
 
-    const achievements = storageService.getAchievements(CURRICULUM.units.length);
-    container.innerHTML = achievements.map(ach => `
+    const allBadges = storageService.getBadges(CURRICULUM);
+    const progress = storageService.getBadgeProgress(CURRICULUM);
+
+    // Renderizar filtros si no existen aún
+    if (filterRow && filterRow.children.length === 0) {
+      filterRow.innerHTML = BADGE_CATEGORIES.map(cat => `
+        <button class="badge-filter-pill ${cat.id === (this.badgeFilterCategory || 'all') ? 'active' : ''}" data-category="${cat.id}">
+          ${cat.icon} ${cat.label}
+        </button>
+      `).join("");
+    }
+
+    // Barra de progreso
+    if (progressBar) progressBar.style.width = `${progress.percentage}%`;
+    if (progressText) progressText.textContent = `${progress.unlocked} / ${progress.total} desbloqueadas`;
+
+    // Filtrar medallas por categoría
+    const category = this.badgeFilterCategory || "all";
+    const filtered = category === "all" ? allBadges : allBadges.filter(b => b.category === category);
+
+    container.innerHTML = filtered.map(ach => `
       <div class="badge-card ${ach.unlocked ? 'unlocked' : 'locked'}">
         <span class="badge-icon">${ach.icon}</span>
         <strong>${ach.title}</strong>
