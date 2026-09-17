@@ -378,6 +378,23 @@
               <!-- Medallas y Logros -->
               <div class="achievements-section">
                 <h3>Medallas y Logros 🏅</h3>
+
+                <!-- Barra de progreso de medallas -->
+                <div class="badge-progress-card">
+                  <div class="badge-progress-header">
+                    <span class="badge-progress-label">Progreso de Medallas</span>
+                    <span class="badge-progress-count" id="badge-progress-text">0 / 0 desbloqueadas</span>
+                  </div>
+                  <div class="badge-progress-track">
+                    <div class="badge-progress-fill" id="badge-progress-bar" style="width: 0%"></div>
+                  </div>
+                </div>
+
+                <!-- Filtros por categoría -->
+                <div class="badge-filter-row" id="badge-filter-row">
+                  <!-- Inyectado dinámicamente por JS -->
+                </div>
+
                 <div class="achievements-grid" id="achievements-container">
                   <!-- Inyectado dinámicamente por JS según progreso real -->
                 </div>
@@ -505,6 +522,18 @@
                 Recargar con 30 💎
               </button>
             </div>
+          </div>
+        </div>
+
+        <!-- TOAST: MEDALLA DESBLOQUEADA -->
+        <div class="badge-unlock-toast" id="badge-unlock-toast">
+          <div class="toast-badge-icon-wrap">
+            <span class="toast-badge-icon">🏅</span>
+          </div>
+          <div class="toast-badge-text">
+            <span class="toast-badge-label">¡Medalla Desbloqueada!</span>
+            <strong class="toast-badge-title"></strong>
+            <span class="toast-badge-desc"></span>
           </div>
         </div>
 
