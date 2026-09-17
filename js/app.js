@@ -372,8 +372,11 @@ class App {
       onProgressUpdate: (curr, total) => {
         progressFill.style.width = `${Math.round((curr / total) * 100)}%`;
       },
-      onComplete: ({ score, total, pct, passed }) => {
+      onComplete: ({ score, total, pct, passed, wrongQuestions }) => {
         storageService.recordExamResult(examId, passed, score, total);
+        if (wrongQuestions && wrongQuestions.length > 0) {
+          storageService.recordWrongQuestions(wrongQuestions);
+        }
         if (passed) {
           storageService.addXp(xpReward);
           storageService.addGems(gemsReward);
@@ -384,6 +387,7 @@ class App {
         this.updateHud();
         this.renderLearningPath();
         this.renderExamList();
+        this.renderWrongQuestionsReview();
         modal.classList.add("hidden");
         this.activeArcadeGame = null;
       }
@@ -929,9 +933,95 @@ class App {
       });
     }
 
+    const wrongReviewBtn = document.getElementById("btn-start-wrong-review");
+    if (wrongReviewBtn) {
+      wrongReviewBtn.addEventListener("click", () => {
+        this.startWrongQuestionsReview();
+      });
+    }
+
     this.setupVocabFilterPills();
     this.renderVocabPreview();
     this.updateReviewStats();
+    this.renderWrongQuestionsReview();
+  }
+
+  renderWrongQuestionsReview() {
+    const card = document.getElementById("wrong-questions-card");
+    const countEl = document.getElementById("wrong-questions-count");
+    const listEl = document.getElementById("wrong-questions-list");
+    const btn = document.getElementById("btn-start-wrong-review");
+    if (!card || !countEl || !btn) return;
+
+    const wrong = storageService.getWrongQuestions();
+    countEl.textContent = `${wrong.length} pregunta(s) fallada(s)`;
+
+    if (listEl) {
+      listEl.innerHTML = wrong.length
+        ? wrong.slice(0, 10).map(q => `
+          <div class="wrong-question-item">
+            <span class="wrong-q-prompt">❓ ${q.prompt.length > 60 ? q.prompt.substring(0, 60) + "…" : q.prompt}</span>
+          </div>
+        `).join("") + (wrong.length > 10 ? `<div class="wrong-q-more">+${wrong.length - 10} más…</div>` : "")
+        : `<p class="empty-vocab-msg">¡Aún no has fallado ninguna pregunta! Sigue practicando. 🎉</p>`;
+    }
+
+    btn.disabled = wrong.length === 0;
+    btn.textContent = wrong.length > 0 ? `REPASAR ${wrong.length} PREGUNTA(S) FALLADA(S) 🔁` : "NO HAY PREGUNTAS PARA REPASAR";
+  }
+
+  startWrongQuestionsReview() {
+    const wrong = storageService.getWrongQuestions();
+    if (wrong.length === 0) return;
+
+    const questions = this._shuffleArray(wrong).map(q => ({
+      prompt: q.prompt,
+      options: [...q.options],
+      correctIndex: q.correctIndex,
+      explanation: q.explanation || ""
+    }));
+
+    soundService.playPop();
+    const modal = document.getElementById("game-overlay-modal");
+    const modalHeader = document.getElementById("modal-overlay-header");
+    const body = document.getElementById("game-modal-body");
+    const progressFill = document.getElementById("lesson-progress-fill");
+
+    if (modalHeader) modalHeader.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    progressFill.style.width = "0%";
+    this.updateHud();
+
+    this.activeArcadeGame = new ExamRunner({
+      container: body,
+      title: "Repaso de Errores",
+      questions,
+      onProgressUpdate: (curr, total) => {
+        progressFill.style.width = `${Math.round((curr / total) * 100)}%`;
+      },
+      onComplete: ({ score, total, pct, wrongQuestions }) => {
+        // Remove questions that were answered correctly this time
+        const correctPrompts = questions
+          .filter(q => !wrongQuestions.some(wq => wq.prompt === q.prompt))
+          .map(q => q.prompt);
+        if (correctPrompts.length > 0) {
+          storageService.removeWrongQuestions(correctPrompts);
+        }
+        if (pct >= 70) {
+          storageService.addXp(20);
+          storageService.addGems(10);
+          this.triggerConfetti();
+        } else {
+          storageService.addXp(5);
+        }
+        this.updateHud();
+        this.renderWrongQuestionsReview();
+        modal.classList.add("hidden");
+        this.activeArcadeGame = null;
+      }
+    });
+
+    this.activeArcadeGame.start();
   }
 
   setupVocabFilterPills() {

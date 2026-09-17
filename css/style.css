@@ -1468,6 +1468,86 @@ body {
   margin-bottom: 10px;
 }
 
+/* Modo Repaso de Errores */
+.wrong-questions-card {
+  background: linear-gradient(135deg, #FF4B4B, #E63946);
+  color: #fff;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  box-shadow: 0 5px 0 #C1121F;
+}
+
+.wrong-questions-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.wrong-questions-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.wrong-questions-header h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.wrong-questions-header p {
+  font-size: 0.85rem;
+  opacity: 0.95;
+}
+
+.wrong-questions-count {
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.wrong-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.wrong-question-item {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.wrong-q-prompt {
+  display: block;
+  line-height: 1.3;
+}
+
+.wrong-q-more {
+  font-size: 0.8rem;
+  font-weight: 700;
+  opacity: 0.8;
+  text-align: center;
+  padding: 4px;
+}
+
+.wrong-questions-card .primary-btn {
+  margin-top: 4px;
+}
+
+.wrong-questions-card .primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .vocab-count-badge {
   font-size: 0.78rem;
   font-weight: 800;

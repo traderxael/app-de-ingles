@@ -19,6 +19,7 @@ const DEFAULT_STATE = {
   soundEnabled: true,
   theme: "light",
   cardReviews: {}, // SRS: { [cardId]: { correct: 0, wrong: 0, level: 0, lastReview: string } }
+  wrongQuestions: [], // Preguntas falladas en exámenes para repaso de errores
   arcadeStats: {
     maxCombo: 0,
     speedMatchesPlayed: 0,
@@ -381,6 +382,31 @@ class StorageService {
     return (this.state.completedExams || []).includes(examId);
   }
 
+  recordWrongQuestions(questions) {
+    if (!this.state.wrongQuestions) this.state.wrongQuestions = [];
+    questions.forEach(q => {
+      const exists = this.state.wrongQuestions.some(
+        existing => existing.prompt === q.prompt
+      );
+      if (!exists) {
+        this.state.wrongQuestions.push(q);
+      }
+    });
+    this.saveState();
+  }
+
+  getWrongQuestions() {
+    return this.state.wrongQuestions || [];
+  }
+
+  removeWrongQuestions(prompts) {
+    if (!this.state.wrongQuestions) return;
+    this.state.wrongQuestions = this.state.wrongQuestions.filter(
+      q => !prompts.includes(q.prompt)
+    );
+    this.saveState();
+  }
+
   recordExamResult(examId, passed, score, total) {
     if (!this.state.completedExams) this.state.completedExams = [];
     if (!this.state.examScores) this.state.examScores = {};
@@ -410,7 +436,8 @@ class StorageService {
       cardReviews: {},
       arcadeStats: { maxCombo: 0, speedMatchesPlayed: 0, roleplaysCompleted: 0, wordFallHighScore: 0, scramblesCompleted: 0, audioDetectivesCompleted: 0 },
       completedExams: [],
-      examScores: {}
+      examScores: {},
+      wrongQuestions: []
     };
     this.saveState();
   }
