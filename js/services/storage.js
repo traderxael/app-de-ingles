@@ -18,6 +18,8 @@ const DEFAULT_STATE = {
   examScores: {},
   soundEnabled: true,
   theme: "light",
+  notificationsEnabled: false,
+  lastNotificationDate: "",
   cardReviews: {}, // SRS: { [cardId]: { correct: 0, wrong: 0, level: 0, lastReview: string } }
   wrongQuestions: [], // Preguntas falladas en exámenes para repaso de errores
   arcadeStats: {
@@ -417,6 +419,26 @@ class StorageService {
     this.saveState();
   }
 
+  isNotificationsEnabled() {
+    return this.state.notificationsEnabled === true;
+  }
+
+  setNotificationsEnabled(enabled) {
+    this.state.notificationsEnabled = enabled;
+    this.saveState();
+    return enabled;
+  }
+
+  shouldSendNotification() {
+    const today = new Date().toISOString().split("T")[0];
+    return this.state.lastNotificationDate !== today;
+  }
+
+  markNotificationSent() {
+    this.state.lastNotificationDate = new Date().toISOString().split("T")[0];
+    this.saveState();
+  }
+
   toggleSound() {
     this.state.soundEnabled = !this.state.soundEnabled;
     this.saveState();
@@ -437,7 +459,9 @@ class StorageService {
       arcadeStats: { maxCombo: 0, speedMatchesPlayed: 0, roleplaysCompleted: 0, wordFallHighScore: 0, scramblesCompleted: 0, audioDetectivesCompleted: 0 },
       completedExams: [],
       examScores: {},
-      wrongQuestions: []
+      wrongQuestions: [],
+      notificationsEnabled: false,
+      lastNotificationDate: ""
     };
     this.saveState();
   }
