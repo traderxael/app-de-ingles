@@ -71,6 +71,19 @@ class SpeechService {
     }
   }
 
+  speakLocal(text) {
+    if (!this.synth || storageService.getState().soundEnabled === false) return false;
+    const voice = this.synth.getVoices().find(v => v.localService === true && /^en(?:-|$)/i.test(v.lang));
+    if (!voice) return false; // Never allow the browser to choose a remote fallback.
+    try {
+      this.synth.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.voice = voice; utterance.lang = voice.lang; utterance.rate = this.rate;
+      this.synth.speak(utterance);
+      return true;
+    } catch { return false; }
+  }
+
   isSupported() {
     return !!this.synth;
   }

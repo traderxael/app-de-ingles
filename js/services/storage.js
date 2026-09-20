@@ -1,4 +1,5 @@
 // Servicio de Persistencia y Gestión del Progreso del Usuario - LingoQuest English
+import { SCENE_BY_ID } from '../data/sceneWords.js';
 const STORAGE_KEY = "lingoquest_player_state_v3";
 
 const DEFAULT_STATE = {
@@ -66,6 +67,43 @@ class StorageService {
     } catch (e) {
       console.warn("Error guardando en localStorage", e);
     }
+  }
+
+  getSceneWords() {
+    const ids = Array.isArray(this.state.sceneWordIds) ? this.state.sceneWordIds : [];
+    return [...new Set(ids)].filter(id => SCENE_BY_ID.has(id)).map(id => SCENE_BY_ID.get(id));
+  }
+
+  saveSceneWord(id) {
+    if (!SCENE_BY_ID.has(id)) throw new Error('Palabra no válida.');
+    this.state.sceneWordIds = [...new Set([...this.getSceneWords().map(w => w.id), id])];
+    this.saveSceneState();
+  }
+
+  saveSceneState() {
+    // Unlike the legacy saveState, report quota/private-mode failures to the scene UI.
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state));
+  }
+
+  removeSceneWord(id) {
+    this.state.sceneWordIds = this.getSceneWords().map(w => w.id).filter(w => w !== id);
+    delete this.state.cardReviews[id];
+    this.saveSceneState();
+  }
+
+  exportSceneWords() {
+    return JSON.stringify({ version: 1, wordIds: this.getSceneWords().map(w => w.id) }, null, 2);
+  }
+
+  importSceneWords(text) {
+    if (typeof text !== 'string' || text.length > 16384) throw new Error('Archivo demasiado grande.');
+    const data = JSON.parse(text);
+    if (!data || Object.keys(data).sort().join(',') !== 'version,wordIds' || data.version !== 1 ||
+        !Array.isArray(data.wordIds) || data.wordIds.length > 80 || data.wordIds.some(id => !SCENE_BY_ID.has(id))) {
+      throw new Error('Formato no válido: solo IDs de Scene Words, versión 1.');
+    }
+    this.state.sceneWordIds = [...new Set([...this.getSceneWords().map(w => w.id), ...data.wordIds])];
+    this.saveSceneState();
   }
 
   getState() {

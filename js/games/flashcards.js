@@ -19,7 +19,7 @@ export class FlashcardsGame {
 
   start(category = "all") {
     this.selectedCategory = category;
-    let pool = [...CURRICULUM.flashcards];
+    let pool = [...CURRICULUM.flashcards, ...storageService.getSceneWords()];
     if (this.selectedCategory !== "all") {
       pool = pool.filter(c => c.category.toLowerCase() === this.selectedCategory.toLowerCase());
     }
@@ -106,7 +106,7 @@ export class FlashcardsGame {
 
     // Reproducir pronunciación inicial
     setTimeout(() => {
-      speechService.speak(card.word, false);
+      card.id.startsWith('scene-') ? speechService.speakLocal(card.word) : speechService.speak(card.word, false);
     }, 200);
 
     this.attachCardEvents(card);
@@ -130,7 +130,7 @@ export class FlashcardsGame {
           const now = Date.now();
           if (now - this.lastPronunciationTime > 800) {
             this.lastPronunciationTime = now;
-            speechService.speak(card.word, false);
+            card.id.startsWith('scene-') ? speechService.speakLocal(card.word) : speechService.speak(card.word, false);
           }
         };
 
@@ -143,13 +143,13 @@ export class FlashcardsGame {
 
     audioBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      speechService.speak(card.word, false);
+      card.id.startsWith('scene-') ? speechService.speakLocal(card.word) : speechService.speak(card.word, false);
     });
 
     if (exampleAudioBtn) {
       exampleAudioBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        speechService.speak(card.example, false);
+        card.id.startsWith('scene-') ? speechService.speakLocal(card.example) : speechService.speak(card.example, false);
       });
     }
 
