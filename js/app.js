@@ -9,6 +9,7 @@ import { FlashcardsGame } from "./games/flashcards.js";
 import { RoleplayGame } from "./games/roleplay.js";
 import { WordFallGame } from "./games/wordFall.js";
 import { SentenceScrambleGame } from "./games/sentenceScramble.js";
+import { SceneWordsGame } from "./games/sceneWords.js";
 import { AudioDetectiveGame } from "./games/audioDetective.js";
 
 class App {
@@ -339,6 +340,12 @@ class App {
   // VISTA 2: ARCADE DE JUEGOS (6 MINIJUEGOS)
   // =========================================================================
   setupArcadeCards() {
+    document.getElementById('card-play-scene')?.addEventListener('click', () => {
+      this.openArcadeOverlay((container, close) => {
+        this.activeArcadeGame = new SceneWordsGame(container, close);
+        this.activeArcadeGame.start();
+      });
+    });
     // 1. Speed Match
     const smBtn = document.getElementById("card-play-speedmatch");
     if (smBtn) {
@@ -434,7 +441,8 @@ class App {
       if (modalHeader) modalHeader.classList.remove("hidden");
       this.updateHud();
       this.updateReviewStats();
-      this.updateProfileStats();
+            this.renderVocabPreview();
+            this.updateProfileStats();
     };
 
     initGameFn(body, closeFn);
@@ -539,7 +547,7 @@ class App {
     const badge = document.getElementById("vocab-total-badge");
     if (!list) return;
 
-    let cards = [...CURRICULUM.flashcards];
+    let cards = [...CURRICULUM.flashcards, ...storageService.getSceneWords()];
     if (this.selectedVocabCategory !== "all") {
       cards = cards.filter(c => c.category.toLowerCase() === this.selectedVocabCategory.toLowerCase());
     }
@@ -561,13 +569,14 @@ class App {
     list.querySelectorAll(".vocab-preview-pill").forEach(pill => {
       pill.addEventListener("click", () => {
         soundService.playPop();
-        speechService.speak(pill.dataset.word, false);
+        const scene = storageService.getSceneWords().some(w => w.word === pill.dataset.word);
+        scene ? speechService.speakLocal(pill.dataset.word) : speechService.speak(pill.dataset.word, false);
       });
     });
   }
 
   updateReviewStats() {
-    const srsStats = storageService.getSrsStats(CURRICULUM.flashcards.length);
+    const srsStats = storageService.getSrsStats(CURRICULUM.flashcards.length + storageService.getSceneWords().length);
     const learnedEl = document.getElementById("srs-learned-count");
     const reviewEl = document.getElementById("srs-review-count");
     const accuracyEl = document.getElementById("srs-accuracy");
@@ -636,7 +645,8 @@ class App {
           this.updateHud();
           this.renderLearningPath();
           this.updateReviewStats();
-          this.updateProfileStats();
+                this.renderVocabPreview();
+                this.updateProfileStats();
           alert("Progreso reiniciado correctamente.");
         }
       });
