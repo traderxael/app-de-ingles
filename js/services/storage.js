@@ -362,6 +362,13 @@ class StorageService {
         unlocked: state.streak >= 1
       },
       {
+        id: "ach-streak-30",
+        title: "Mes Inquebrantable",
+        description: "Mantén una racha de 30 días seguidos",
+        icon: "🏆",
+        unlocked: state.streak >= 30
+      },
+      {
         id: "ach-speed",
         title: "Rayo Veloz",
         description: "Haz un combo x3 en Speed Match",
