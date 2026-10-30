@@ -9,6 +9,8 @@ function script(name, global) {
 }
 // One model per scene session. Caller disposes after pending inference finishes.
 export async function loadSceneDetector() {
+  // The bundled runtime falls back to Function() if this global binding is absent.
+  if (!('regeneratorRuntime' in window)) window.regeneratorRuntime = undefined;
   await script('tf-4.22.0.min.js', 'tf');
   await script('coco-ssd-2.2.3.min.js', 'cocoSsd');
   await window.tf.ready();
